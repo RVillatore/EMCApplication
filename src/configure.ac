@@ -208,7 +208,7 @@ AC_MSG_CHECKING([for HAL package])
 AS_IF([test -n "$with_hal" -a "$with_hal" != no],
   [
     # User supplied --with-hal=HAL_PC; verify HAL_PC
-    if pkg-config $with_hal; then
+    if pkg-config $with_hal --print-errors; then
       AC_MSG_RESULT([${with_hal}])
       INTERNAL_HAL=false
       RTS=external-hal

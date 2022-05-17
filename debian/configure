@@ -305,8 +305,8 @@ case $TARGET in
         OTHER_MAIN_PACKAGE_NAME=linuxcnc-uspace
         INITRD_REALTIME_PATH=
         CONFIGURE_REALTIME_ARG=--with-hal=machinekit-hal
-    EXTRA_BUILD="${EXTRA_BUILD}, machinekit-hal-dev (= $MACHINEKIT_VERSION)"
-    EXTRA_RECOMMENDS="machinekit-hal-dev (= $MACHINEKIT_VERSION)"
+    EXTRA_BUILD="${EXTRA_BUILD}, libmachinekit-hal-dev (= $MACHINEKIT_VERSION), libmachinekit-hal (= $MACHINEKIT_VERSION)"
+    EXTRA_RECOMMENDS="libmachinekit-hal-dev (= $MACHINEKIT_VERSION)"
     read -r -d '' MAIN_PACKAGE_DESCRIPTION_TEXT <<DESCRIPTION
 Enhanced Motion Controller for Machinekit-HAL
  Run EMC2 developed as part of LinuxCNC with the power of Machinekit-HAL engine

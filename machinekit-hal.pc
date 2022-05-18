@@ -6,7 +6,7 @@ Version: 0.4
 # Paths
 prefix=/usr
 exec_prefix=/usr
-includedir=/usr/include/machinekit/hal/
+includedir=/usr/include/machinekit/hal
 modulesdir=/usr/lib/arm-linux-gnueabihf/machinekit/hal/module/managed
 bindir=/usr/bin
 

@@ -96,12 +96,12 @@
 */
 
 #include "rtapi.h"		/* RTAPI realtime OS API */
-#include "/usr/include/machinekit/hal/runtime/rtapi_ctype.h"	/* isspace() */
-#include "/usr/include/machinekit/hal/runtime/rtapi_app.h"		/* RTAPI realtime module decls */
+#include "runtime/rtapi_runtime/rtapi_ctype.h"	/* isspace() */
+#include "runtime/rtapi_runtime/rtapi_app.h"		/* RTAPI realtime module decls */
 
 #include "hal.h"		/* HAL public API decls */
 
-#include </usr/include/machinekit/hal/runtime/rtapi_io.h>
+#include <runtime/rtapi_runtime/rtapi_io.h>
 
 #include "hal_parport.h"
 

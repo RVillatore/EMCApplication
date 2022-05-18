@@ -93,7 +93,7 @@
 */
 
 #include <rtapi.h>
-#include </usr/include/machinekit/hal/runtime/rtapi_mutex.h>
+#include <runtime/rtapi_runtime/rtapi_mutex.h>
 RTAPI_BEGIN_DECLS
 
 /* SHMPTR(offset) converts 'offset' to a void pointer. */

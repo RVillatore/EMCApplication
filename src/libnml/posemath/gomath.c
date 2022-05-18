@@ -20,7 +20,7 @@
 extern int printf(const char * fmt, ...);
 #include <stddef.h>		/* NULL */
 
-#include "/usr/include/machinekit/hal/runtime/rtapi_math.h"
+#include "runtime/rtapi_runtime/rtapi_math.h"
 #include <float.h>
 
 #include "sincos.h"

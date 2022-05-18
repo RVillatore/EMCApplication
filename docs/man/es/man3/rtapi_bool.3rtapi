@@ -26,7 +26,7 @@ rtapi_bool.h \- Contenedores RTAPI para la funcionalidad del kernel de Linux
 
 .SH SINTAXIS
 .HP
-#include <rtapi_bool.h>
+#include <runtime/rtapi_runtime/rtapi_bool.h>
 .SH DESCRIPCIÓN
 Incluye <stdbool.h> o <linux/types.h> según corresponda, para obtener
 declaraciones adecuadas de "bool", "true" y "false".

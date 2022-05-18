@@ -1,4 +1,4 @@
-#include <rtapi_mutex.h>
+#include <runtime/rtapi_runtime/rtapi_mutex.h>
 #include <pthread.h>
 #include <assert.h>
 #include <stdio.h>

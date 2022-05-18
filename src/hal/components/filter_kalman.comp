@@ -65,7 +65,7 @@ variable bool initialized = FALSE;
 variable int cidx = 0;
 
 ;;
-#include </usr/include/machinekit/hal/runtime/rtapi_math.h>
+#include <runtime/rtapi_runtime/rtapi_math.h>
 
 typedef hal_float_t D; // to Keep code synchronized with C++ based TrivialKalmanFilter implemntation.
 

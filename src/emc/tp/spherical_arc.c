@@ -14,7 +14,7 @@
 #include "posemath.h"
 #include "spherical_arc.h"
 #include "tp_types.h"
-#include "/usr/include/machinekit/hal/runtime/rtapi_math.h"
+#include "runtime/rtapi_runtime/rtapi_math.h"
 
 #include "tp_debug.h"
 

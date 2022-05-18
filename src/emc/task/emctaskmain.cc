@@ -59,7 +59,7 @@
 #include <libintl.h>
 #include <locale.h>
 #include "usrmotintf.h"
-#include </usr/include/machinekit/hal/runtime/rtapi_string.h>
+#include <runtime/rtapi_runtime/rtapi_string.h>
 #include "tooldata.hh"
 
 #if 0

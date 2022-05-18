@@ -105,7 +105,7 @@
 
  ----------------------------------------------------------------------------*/
 
-#include "/usr/include/machinekit/hal/runtime/rtapi_math.h"
+#include "runtime/rtapi_runtime/rtapi_math.h"
 #include "posemath.h"
 #include "genhexkins.h"
 #include "kinematics.h"             /* these decls, KINEMATICS_FORWARD_FLAGS */
@@ -516,7 +516,7 @@ KINEMATICS_TYPE kinematicsType()
 
 
 #include "rtapi.h"      /* RTAPI realtime OS API */
-#include "/usr/include/machinekit/hal/runtime/rtapi_app.h"      /* RTAPI realtime module decls */
+#include "runtime/rtapi_runtime/rtapi_app.h"      /* RTAPI realtime module decls */
 
 EXPORT_SYMBOL(kinematicsType);
 EXPORT_SYMBOL(kinematicsForward);

@@ -26,7 +26,7 @@ rtapi_byteorder.h \- RTAPI wrappers for linux kernel functionality
 
 .SH SYNTAX
 .HP
-#include <rtapi_byteorder.h>
+#include <runtime/rtapi_runtime/rtapi_byteorder.h>
 .TP
 RTAPI_BIG_ENDIAN
 Defined to 1 if the platform is big-endian, 0 otherwise

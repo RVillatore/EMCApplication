@@ -17,14 +17,14 @@
 *******************************************************************
 */
 
-#include "/usr/include/machinekit/hal/runtime/rtapi_math.h"
+#include "runtime/rtapi_runtime/rtapi_math.h"
 #include "posemath.h"
 #include "pumakins.h"
 #include "kinematics.h"             /* decls for kinematicsForward, etc. */
 
 
 #include "rtapi.h"		/* RTAPI realtime OS API */
-#include "/usr/include/machinekit/hal/runtime/rtapi_app.h"		/* RTAPI realtime module decls */
+#include "runtime/rtapi_runtime/rtapi_app.h"		/* RTAPI realtime module decls */
 #include "hal.h"
 
 struct haldata {

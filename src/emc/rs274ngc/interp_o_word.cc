@@ -34,7 +34,7 @@
 #include "rs274ngc_interp.hh"
 #include "python_plugin.hh"
 #include "interp_python.hh"
-#include </usr/include/machinekit/hal/runtime/rtapi_string.h>
+#include <runtime/rtapi_runtime/rtapi_string.h>
 
 namespace bp = boost::python;
 

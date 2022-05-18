@@ -20,10 +20,10 @@
 /* A component to stream HAL data to an LCD in a user-defined format */
 
 #include "rtapi.h"
-#include "/usr/include/machinekit/hal/runtime/rtapi_app.h"
-#include "/usr/include/machinekit/hal/runtime/rtapi_string.h"
+#include "runtime/rtapi_runtime/rtapi_app.h"
+#include "runtime/rtapi_runtime/rtapi_string.h"
 #include "hal.h"
-#include "/usr/include/machinekit/hal/runtime/rtapi_math.h"
+#include "runtime/rtapi_runtime/rtapi_math.h"
 
 #if !defined(__KERNEL__)
 #include <stdio.h>

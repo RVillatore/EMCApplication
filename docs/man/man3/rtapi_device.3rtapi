@@ -26,7 +26,7 @@ rtapi_device.h \- RTAPI wrappers for linux kernel functionality
 
 .SH SYNTAX
 .HP
-#include <rtapi_device.h>
+#include <runtime/rtapi_runtime/rtapi_device.h>
 .HP
 struct rtapi_device;
 .HP

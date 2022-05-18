@@ -17,7 +17,7 @@
 
 #ifndef DBUF_H
 #define DBUF_H
-#include "/usr/include/machinekit/hal/runtime/rtapi_string.h"
+#include "runtime/rtapi_runtime/rtapi_string.h"
 
 #ifdef __cplusplus
 extern "C" {

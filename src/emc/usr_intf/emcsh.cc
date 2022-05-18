@@ -32,7 +32,7 @@
 #include "inifile.hh"		// INIFILE
 #include "rcs_print.hh"
 #include "timer.hh"
-#include </usr/include/machinekit/hal/runtime/rtapi_string.h>
+#include <runtime/rtapi_runtime/rtapi_string.h>
 
 #include "shcom.hh"
 

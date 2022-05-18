@@ -26,7 +26,7 @@ rtapi_slab.h \- Contenedores RTAPI para funcionalidad del kernel de Linux
 
 .SH SINTAXIS
 .HP
-#include <rtapi_slab.h>
+#include <runtime/rtapi_runtime/rtapi_slab.h>
 .HP
 void *rtapi_kmalloc(size_t size, gfp_t g);
 .HP

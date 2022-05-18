@@ -17,11 +17,11 @@
 //    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
 //
 
-#include </usr/include/machinekit/hal/runtime/rtapi_slab.h>
+#include <runtime/rtapi_runtime/rtapi_slab.h>
 
 #include "rtapi.h"
-#include "/usr/include/machinekit/hal/runtime/rtapi_string.h"
-#include "/usr/include/machinekit/hal/runtime/rtapi_math.h"
+#include "runtime/rtapi_runtime/rtapi_string.h"
+#include "runtime/rtapi_runtime/rtapi_math.h"
 
 #include "hal.h"
 

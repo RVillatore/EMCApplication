@@ -1,7 +1,7 @@
 #ifndef HOMING_H
 #define HOMING_H
 
-#include </usr/include/machinekit/hal/runtime/rtapi_bool.h>
+#include <runtime/rtapi_runtime/rtapi_bool.h>
 
 // SEQUENCE states
 typedef enum {

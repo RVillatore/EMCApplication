@@ -18,12 +18,12 @@
 //
 
 
-#include </usr/include/machinekit/hal/runtime/rtapi_pci.h>
-#include </usr/include/machinekit/hal/runtime/rtapi_io.h>
+#include <runtime/rtapi_runtime/rtapi_pci.h>
+#include <runtime/rtapi_runtime/rtapi_io.h>
 
 #include "rtapi.h"
-#include "/usr/include/machinekit/hal/runtime/rtapi_app.h"
-#include "/usr/include/machinekit/hal/runtime/rtapi_string.h"
+#include "runtime/rtapi_runtime/rtapi_app.h"
+#include "runtime/rtapi_runtime/rtapi_string.h"
 
 #include "hal.h"
 

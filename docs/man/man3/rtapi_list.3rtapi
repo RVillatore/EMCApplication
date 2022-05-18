@@ -26,7 +26,7 @@ rtapi_list.h \- RTAPI wrappers for linux kernel functionality
 
 .SH SYNTAX
 .HP
-#include <rtapi_list.h>
+#include <runtime/rtapi_runtime/rtapi_list.h>
 .HP
 struct rtapi_list_head;
 .HP

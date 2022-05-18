@@ -39,7 +39,7 @@
 #include "calc_sequential.h"
 #include "vars_names.h"
 #include "edit_sequential.h"
-#include </usr/include/machinekit/hal/runtime/rtapi_string.h>
+#include <runtime/rtapi_runtime/rtapi_string.h>
 
 /* We modify the datas in this variable. It is only
    after clicking on apply that they are used */

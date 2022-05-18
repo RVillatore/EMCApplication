@@ -17,7 +17,7 @@
 #ifndef HAL_PARPORT_COMMON_H
 #define HAL_PARPORT_COMMON_H
 
-#include </usr/include/machinekit/hal/runtime/rtapi_parport.h>
+#include <runtime/rtapi_runtime/rtapi_parport.h>
 
 #define hal_parport_t rtapi_parport_t
 #define hal_parport_get(comp_id, port, base, base_hi, modes) \

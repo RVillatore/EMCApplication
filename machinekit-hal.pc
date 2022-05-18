@@ -11,7 +11,7 @@ modulesdir=/usr/lib/arm-linux-gnueabihf/machinekit/hal/module/managed
 bindir=/usr/bin
 
 # CFLAGS
-Cflags: -Ihal, -Ihal_command,-Ihal_parport,-Ihalscope_memory,-Ihostmot2,-Imachinetalk,-Imisc_gtk,-Imkini,-Ipru_app_loader,-Ipru_defines,-Iraspi_cpuinfo,-Iruntime,-Isamstr_memdefs,-Isyslog_async,-Iupci,-Iuser_pci
+Cflags: -I/usr/include/machinekit/hal
 
 # Library flags
 Libs: 

@@ -19,7 +19,7 @@
 
 #include "config.h"
 
-#include "/usr/include/machinekit/hal/runtime/rtapi_math.h"
+#include "runtime/rtapi_runtime/rtapi_math.h"
 #include "sincos.h"
 
 void pm_sincos(double x, double *sx, double *cx)

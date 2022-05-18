@@ -15,7 +15,7 @@
 #include "tc.h"
 #include "tp.h"
 #include "emcpose.h"
-#include "/usr/include/machinekit/hal/runtime/rtapi_math.h"
+#include "runtime/rtapi_runtime/rtapi_math.h"
 #include "mot_priv.h"
 #include "motion_debug.h"
 #include "motion_types.h"

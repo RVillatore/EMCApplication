@@ -28,7 +28,7 @@
 
 // local library includes
 #include <math.h>
-#include </usr/include/machinekit/hal/runtime/rtapi_math.h>
+#include <runtime/rtapi_runtime/rtapi_math.h>
 
 // local includes
 #include "./hal.h"

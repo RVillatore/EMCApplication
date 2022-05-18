@@ -41,7 +41,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <errno.h>
-#include </usr/include/machinekit/hal/runtime/rtapi_string.h>
+#include <runtime/rtapi_runtime/rtapi_string.h>
 
 #define UNEXPECTED_MSG fprintf(stderr,"UNEXPECTED %s %d\n",__FILE__,__LINE__);
 

@@ -26,7 +26,7 @@ rtapi_byteorder.h \- Contenedores RTAPI para funcionalidad del kernel de Linux
 
 .SH SINTAXIS
 .HP
-#include <rtapi_byteorder.h>
+#include <runtime/rtapi_runtime/rtapi_byteorder.h>
 .TP
 RTAPI_BIG_ENDIAN
 Definido a 1 si la plataforma es big-endian, 0 de lo contrario

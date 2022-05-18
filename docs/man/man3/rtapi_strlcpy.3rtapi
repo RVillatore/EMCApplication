@@ -26,7 +26,7 @@ rtapi_strlcpy \- RTAPI string manipulation functions
 
 .SH SYNTAX
 .HP
-#include <rtapi_string.h>
+#include <runtime/rtapi_runtime/rtapi_string.h>
 .HP
 size_t rtapi_strlcpy(char *dst, const char *src, size_t sz);
 #define rtapi_strxcpy(dst, src) ...

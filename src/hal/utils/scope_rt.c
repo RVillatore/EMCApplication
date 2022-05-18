@@ -33,11 +33,11 @@
 */
 
 #include <rtapi.h>		/* RTAPI realtime OS API */
-#include </usr/include/machinekit/hal/runtime/rtapi_app.h>		/* RTAPI realtime module decls */
+#include <runtime/rtapi_runtime/rtapi_app.h>		/* RTAPI realtime module decls */
 #include <hal.h>		/* HAL public API decls */
 #include "../hal_priv.h"	/* HAL private API decls */
 #include "scope_rt.h"		/* scope related declarations */
-#include "/usr/include/machinekit/hal/runtime/rtapi_string.h"
+#include "runtime/rtapi_runtime/rtapi_string.h"
 
 /* module information */
 MODULE_AUTHOR("John Kasunich");

@@ -26,7 +26,7 @@ rtapi_gfp.h \- RTAPI wrappers for linux kernel functionality
 
 .SH SYNTAX
 .HP
-#include <rtapi_gfp.h>
+#include <runtime/rtapi_runtime/rtapi_gfp.h>
 .HP
 enum rtapi_gfp_e;
 .HP

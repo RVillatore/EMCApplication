@@ -35,7 +35,7 @@
 #include <readline/history.h>
 #include <glob.h>
 #include <wordexp.h>
-#include </usr/include/machinekit/hal/runtime/rtapi_string.h>
+#include <runtime/rtapi_runtime/rtapi_string.h>
 
 #include <saicanon.hh>
 #include "tooldata.hh"

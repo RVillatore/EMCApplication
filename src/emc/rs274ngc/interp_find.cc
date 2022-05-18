@@ -22,7 +22,7 @@
 #include <ctype.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include "/usr/include/machinekit/hal/runtime/rtapi_math.h"
+#include "runtime/rtapi_runtime/rtapi_math.h"
 #include "rs274ngc.hh"
 #include "interp_return.hh"
 #include "interp_internal.hh"

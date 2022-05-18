@@ -1,11 +1,11 @@
-#include </usr/include/machinekit/hal/runtime/rtapi_pci.h>
-#include </usr/include/machinekit/hal/runtime/rtapi_io.h>
+#include <runtime/rtapi_runtime/rtapi_pci.h>
+#include <runtime/rtapi_runtime/rtapi_io.h>
 
 #include "rtapi.h"		// RTAPI realtime OS API
-#include "/usr/include/machinekit/hal/runtime/rtapi_app.h"		// RTAPI realtime module decls
+#include "runtime/rtapi_runtime/rtapi_app.h"		// RTAPI realtime module decls
 #include "hal.h"		// HAL public API decls
 #include "gm.h"			// Hardware dependent defines
-#include "/usr/include/machinekit/hal/runtime/rtapi_math.h"
+#include "runtime/rtapi_runtime/rtapi_math.h"
 
 // Module information.
 MODULE_AUTHOR("Bence Kovacs");

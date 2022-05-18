@@ -36,7 +36,7 @@
 #include "rcs_print.hh"
 #include "nml_oi.hh"
 #include "timer.hh"
-#include </usr/include/machinekit/hal/runtime/rtapi_string.h>
+#include <runtime/rtapi_runtime/rtapi_string.h>
 #include "tooldata.hh"
 
 /* Using halui: see the man page */

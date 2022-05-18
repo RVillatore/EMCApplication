@@ -16,10 +16,10 @@ Cflags: -I/usr/include/machinekit/hal -I/usr/include/machinekit/hal/hal -I/usr/i
 # Library flags
 Libs: 
 hal_lib_dir=
-lib_ulapi=-l/usr/lib/arm-linux-gnueabihf/libmkhunmanaged_runtime
-lib_hal=-L/usr/lib/arm-linux-gnueabihf -lmkhunmanaged_hal
-lib_halcmd=-l/usr/lib/arm-linux-gnueabihf/libmkhhal_command
-lib_rtapi_math=-l/usr/lib/arm-linux-gnueabihf/libmkhruntime_math
+lib_ulapi=-lmkhunmanaged_runtime
+lib_hal=-lmkhunmanaged_hal
+lib_halcmd=-lmkhhal_command
+lib_rtapi_math=-lmkhruntime_math
 
 # Other build variables
 modext=.so

@@ -17,9 +17,9 @@ Cflags: -I/usr/include/machinekit/hal -I/usr/include/machinekit/hal/hal -I/usr/i
 Libs: 
 hal_lib_dir=
 lib_ulapi=-lhalulapi
-lib_hal=-lhal
-lib_halcmd=-lhalcmd
-lib_rtapi_math=-lrtapi_math
+lib_hal=-llibmkhunmanaged_hal
+lib_halcmd=-llibmkhhal_command
+lib_rtapi_math=-llibmkhruntime_math
 
 # Other build variables
 modext=.so

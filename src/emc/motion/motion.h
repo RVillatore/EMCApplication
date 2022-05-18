@@ -77,9 +77,9 @@ to another.
 #include "emcmotcfg.h"		/* EMCMOT_MAX_JOINTS */
 #include "kinematics.h"
 #include "simple_tp.h"
-#include "runtime/rtapi_runtime/rtapi_limits.h"
+#include "runtime/rtapi_limits.h"
 #include <stdarg.h>
-#include "runtime/rtapi_runtime/rtapi_bool.h"
+#include "runtime/rtapi_bool.h"
 #include "state_tag.h"
 
 // define a special value to denote an invalid motion ID 

@@ -15,7 +15,7 @@
 ********************************************************************/
 #include "posemath.h"
 #include "cubic.h"
-#include "runtime/rtapi_runtime/rtapi_math.h"
+#include "runtime/rtapi_math.h"
 
 #define SEGMENT_TIME_SET 0x01
 #define INTERPOLATION_RATE_SET 0x02

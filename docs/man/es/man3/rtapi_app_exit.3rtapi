@@ -5,7 +5,7 @@ rtapi_app_exit \- Función proporcionada por el usuario para cerrar un component
 
 .SH SINTAXIS
 .nf
-.B #include <runtime/rtapi_runtime/rtapi_app.h>
+.B #include <runtime/rtapi_app.h>
 .HP
 .BI "void rtapi_app_exit(void) {" ... "}"
 .fi

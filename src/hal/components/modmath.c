@@ -32,10 +32,10 @@
 ********************************************************************/
 
 #include "rtapi.h"		/* RTAPI realtime OS API */
-#include "runtime/rtapi_runtime/rtapi_app.h"		/* RTAPI realtime module decls */
+#include "runtime/rtapi_app.h"		/* RTAPI realtime module decls */
 #include "hal.h"		/* HAL public API decls */
 
-#include "runtime/rtapi_runtime/rtapi_math.h"
+#include "runtime/rtapi_math.h"
 
 /* module information */
 MODULE_AUTHOR("Stephen Wille Padnos");

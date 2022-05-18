@@ -24,7 +24,7 @@
 #include "initraj.hh"		// these decls
 #include "emcglb.h"		/*! \todo TRAVERSE_RATE (FIXME) */
 #include "inihal.hh"
-#include <runtime/rtapi_runtime/rtapi_string.h>
+#include <runtime/rtapi_string.h>
 
 extern value_inihal_data old_inihal_data;
 

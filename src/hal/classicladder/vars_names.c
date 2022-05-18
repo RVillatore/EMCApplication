@@ -28,7 +28,7 @@
 #include <stdlib.h>
 #include "classicladder.h"
 #include "global.h"
-#include <runtime/rtapi_runtime/rtapi_string.h>
+#include <runtime/rtapi_string.h>
 
 #include "symbols.h"
 #include "vars_names.h"

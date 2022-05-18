@@ -62,7 +62,7 @@
 #include "motion_debug.h"
 #include "motion_struct.h"
 #include "mot_priv.h"
-#include "runtime/rtapi_runtime/rtapi_math.h"
+#include "runtime/rtapi_math.h"
 #include "motion_types.h"
 #include "homing.h"
 #include "kinematics.h"

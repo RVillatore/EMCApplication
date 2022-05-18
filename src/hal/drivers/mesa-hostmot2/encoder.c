@@ -25,11 +25,11 @@
 //
 
 
-#include <runtime/rtapi_runtime/rtapi_slab.h>
+#include <runtime/rtapi_slab.h>
 
 #include "rtapi.h"
-#include "runtime/rtapi_runtime/rtapi_string.h"
-#include "runtime/rtapi_runtime/rtapi_math.h"
+#include "runtime/rtapi_string.h"
+#include "runtime/rtapi_math.h"
 
 #include "hal.h"
 

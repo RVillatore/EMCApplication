@@ -22,7 +22,7 @@
 #include <fcntl.h>
 #include <sys/mman.h>
 #include <string.h>
-#include "runtime/rtapi_runtime/rtapi_mutex.h"
+#include "runtime/rtapi_mutex.h"
 #include "tooldata.hh"
 
 typedef unsigned long rtapi_mutex_t;

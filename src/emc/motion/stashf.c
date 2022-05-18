@@ -17,8 +17,8 @@
 
 #include "stashf.h"
 #include "dbuf.h"
-#include "runtime/rtapi_runtime/rtapi_errno.h"
-#include "runtime/rtapi_runtime/rtapi_string.h"
+#include "runtime/rtapi_errno.h"
+#include "runtime/rtapi_string.h"
 #include <stdarg.h>
 
 #ifdef __KERNEL__

@@ -26,7 +26,7 @@ rtapi_string.h \- RTAPI wrappers for linux kernel functionality
 
 .SH SYNTAX
 .HP
-#include <runtime/rtapi_runtime/rtapi_string.h>
+#include <runtime/rtapi_string.h>
 .HP
 char **rtapi_argv_split(rtapi_gfp_t g, const char *argstr, int *argc);
 .HP

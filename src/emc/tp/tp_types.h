@@ -18,7 +18,7 @@
 #include "tc_types.h"
 #include "tcq.h"
 
-#include <runtime/rtapi_runtime/rtapi_bool.h>
+#include <runtime/rtapi_bool.h>
 
 #define TP_DEFAULT_QUEUE_SIZE 32
 /* Minimum length of a segment in cycles (must be greater than 1 to ensure each

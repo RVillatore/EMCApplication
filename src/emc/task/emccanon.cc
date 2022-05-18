@@ -42,7 +42,7 @@
 #include "canon_position.hh"		// data type for a machine position
 #include "interpl.hh"		// interp_list
 #include "emcglb.h"		// TRAJ_MAX_VELOCITY
-#include <runtime/rtapi_runtime/rtapi_string.h>
+#include <runtime/rtapi_string.h>
 #include "modal_state.hh"
 #include "tooldata.hh"
 

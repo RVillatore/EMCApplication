@@ -1,5 +1,5 @@
 #include <rtapi.h>
-#include <runtime/rtapi_runtime/rtapi_app.h>
+#include <runtime/rtapi_app.h>
 #include <errno.h>
 #include <stdio.h>
 

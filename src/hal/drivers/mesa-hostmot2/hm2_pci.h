@@ -18,7 +18,7 @@
 //
 
 
-#include <runtime/rtapi_runtime/rtapi_pci.h>
+#include <runtime/rtapi_pci.h>
 
 #define HM2_PCI_VERSION "0.7"
 

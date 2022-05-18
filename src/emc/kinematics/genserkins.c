@@ -31,7 +31,7 @@
     * add HAL pins for ULAPI compiled version
 */
 
-#include "runtime/rtapi_runtime/rtapi_math.h"
+#include "runtime/rtapi_math.h"
 #include "gotypes.h"		/* go_result, go_integer */
 #include "gomath.h"		/* go_pose */
 #include "genserkins.h"		/* these decls */
@@ -39,7 +39,7 @@
 
 #ifdef RTAPI
 #include "rtapi.h"
-#include "runtime/rtapi_runtime/rtapi_app.h"
+#include "runtime/rtapi_app.h"
 #endif
 
 #include "hal.h"

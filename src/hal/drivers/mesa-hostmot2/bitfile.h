@@ -27,8 +27,8 @@
 #define __BITFILE_H
 
 
-#include <runtime/rtapi_runtime/rtapi_firmware.h>
-#include <runtime/rtapi_runtime/rtapi_stdint.h>
+#include <runtime/rtapi_firmware.h>
+#include <runtime/rtapi_stdint.h>
 
 
 

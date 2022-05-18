@@ -46,7 +46,7 @@
 #include "vars_access.h"
 #include "protocol_modbus_master.h"
 #include "emc_mods.h"
-#include <runtime/rtapi_runtime/rtapi_string.h>
+#include <runtime/rtapi_string.h>
 
 #ifdef debug
 #define dbg_printf printf

@@ -34,7 +34,7 @@
 #include "kinematics.h"		/* these decls */
 #include "posemath.h"
 #include "hal.h"
-#include "runtime/rtapi_runtime/rtapi_math.h"
+#include "runtime/rtapi_math.h"
 
 #define d2r(d) ((d)*PM_PI/180.0)
 #define r2d(r) ((r)*180.0/PM_PI)
@@ -126,7 +126,7 @@ KINEMATICS_TYPE kinematicsType()
 }
 
 #include "rtapi.h"		/* RTAPI realtime OS API */
-#include "runtime/rtapi_runtime/rtapi_app.h"		/* RTAPI realtime module decls */
+#include "runtime/rtapi_app.h"		/* RTAPI realtime module decls */
 #include "hal.h"
 
 EXPORT_SYMBOL(kinematicsType);

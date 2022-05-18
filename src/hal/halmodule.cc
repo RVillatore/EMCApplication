@@ -25,7 +25,7 @@ using namespace std;
 
 #include "config.h"
 #include "rtapi.h"
-#include <runtime/rtapi_runtime/rtapi_mutex.h>
+#include <runtime/rtapi_mutex.h>
 #include "hal.h"
 #include "hal_priv.h"
 

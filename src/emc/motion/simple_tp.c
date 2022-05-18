@@ -11,7 +11,7 @@
 ********************************************************************/
 
 #include "simple_tp.h"
-#include "runtime/rtapi_runtime/rtapi_math.h"
+#include "runtime/rtapi_math.h"
 
 void simple_tp_update(simple_tp_t *tp, double period)
 {

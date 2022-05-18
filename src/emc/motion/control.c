@@ -18,7 +18,7 @@
 #include "hal.h"
 #include "motion.h"
 #include "mot_priv.h"
-#include "runtime/rtapi_runtime/rtapi_math.h"
+#include "runtime/rtapi_math.h"
 #include "tp.h"
 #include "tc.h"
 #include "simple_tp.h"

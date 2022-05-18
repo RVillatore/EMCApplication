@@ -7,13 +7,13 @@
 //
 
 
-#include <runtime/rtapi_runtime/rtapi_slab.h>
-#include <runtime/rtapi_runtime/rtapi_bool.h>
+#include <runtime/rtapi_slab.h>
+#include <runtime/rtapi_bool.h>
 
 #include "rtapi.h"
-#include "runtime/rtapi_runtime/rtapi_string.h"
-#include "runtime/rtapi_runtime/rtapi_math.h"
-#include "runtime/rtapi_runtime/rtapi_math64.h"
+#include "runtime/rtapi_string.h"
+#include "runtime/rtapi_math.h"
+#include "runtime/rtapi_math64.h"
 #include "hal.h"
 #include "hal/drivers/mesa-hostmot2/hostmot2.h"
 

@@ -14,9 +14,9 @@
 //    along with this program; if not, write to the Free Software
 //    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
 #include "rtapi.h"
-#include "runtime/rtapi_runtime/rtapi_app.h"
+#include "runtime/rtapi_app.h"
 #include "hal.h"
-#include "runtime/rtapi_runtime/rtapi_string.h"
+#include "runtime/rtapi_string.h"
 
 #define MAX 16
 
@@ -247,7 +247,7 @@ void rtapi_app_exit(void) {
 #define ioaddr (inst->ioaddr)
 #define dir_ (inst->dir_)
 
-#include "runtime/rtapi_runtime/rtapi_errno.h"
+#include "runtime/rtapi_errno.h"
 
 int get_count(void) {
     int i = 0;

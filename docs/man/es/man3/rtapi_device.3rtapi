@@ -26,7 +26,7 @@ rtapi_device.h \- Contenedores RTAPI para funcionalidad del kernel de Linux
 
 .SH SINTAXIS
 .HP
-#include <runtime/rtapi_runtime/rtapi_device.h>
+#include <runtime/rtapi_device.h>
 .HP
 struct rtapi_device;
 .HP

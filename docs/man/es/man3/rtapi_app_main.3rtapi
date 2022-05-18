@@ -5,7 +5,7 @@ rtapi_app_main \- Función proporcionada por el usuario para inicializar un comp
 
 .SH SINTAXIS
 .nf
-.B #include <runtime/rtapi_runtime/rtapi_app.h>
+.B #include <runtime/rtapi_app.h>
 .HP
 .BI "int rtapi_app_main(void) {" ... "}"
 .fi

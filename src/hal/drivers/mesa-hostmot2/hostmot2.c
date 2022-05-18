@@ -17,14 +17,14 @@
 //    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
 //
 
-#include <runtime/rtapi_runtime/rtapi_slab.h>
-#include <runtime/rtapi_runtime/rtapi_ctype.h>
-#include <runtime/rtapi_runtime/rtapi_list.h>
+#include <runtime/rtapi_slab.h>
+#include <runtime/rtapi_ctype.h>
+#include <runtime/rtapi_list.h>
 
 #include "rtapi.h"
-#include "runtime/rtapi_runtime/rtapi_app.h"
-#include "runtime/rtapi_runtime/rtapi_string.h"
-#include "runtime/rtapi_runtime/rtapi_math.h"
+#include "runtime/rtapi_app.h"
+#include "runtime/rtapi_string.h"
+#include "runtime/rtapi_math.h"
 
 #include "hal.h"
 

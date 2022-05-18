@@ -5,7 +5,7 @@ rtapi_atomic \- subset of C11 <stdatomic.h>
 
 .SH SYNTAX
 .HP
-#include <runtime/rtapi_runtime/rtapi_atomic.h>
+#include <runtime/rtapi_atomic.h>
 .HP
 enum memory_order { ... };
 .HP

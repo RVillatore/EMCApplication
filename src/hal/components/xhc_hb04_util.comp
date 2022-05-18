@@ -48,7 +48,7 @@ variable double value3;
 function _;
 license "GPL";
 ;;
-#include <runtime/rtapi_runtime/rtapi_math.h>
+#include <runtime/rtapi_math.h>
 
 typedef struct { int old_start_or_pause; } xhc_data;
 

@@ -16,7 +16,7 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 #include "rtapi.h"
-#include "runtime/rtapi_runtime/rtapi_vsnprintf.h"
+#include "runtime/rtapi_vsnprintf.h"
 #include <stdio.h>
 #include <string.h>
 

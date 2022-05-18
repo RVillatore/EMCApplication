@@ -29,7 +29,7 @@
 #include "nml_oi.hh"
 #include "timer.hh"
 #include "nml_srv.hh"           // run_nml_servers()
-#include <runtime/rtapi_runtime/rtapi_string.h>
+#include <runtime/rtapi_string.h>
 
 static int tool_channels = 1;
 

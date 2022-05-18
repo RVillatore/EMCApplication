@@ -619,7 +619,7 @@ pin in float theta;
 function _;
 license "GPL"; // indicates GPL v2 or later
 ;;
-#include <runtime/rtapi_runtime/rtapi_math.h>
+#include <runtime/rtapi_math.h>
 FUNCTION(_) { sin_ = sin(theta); cos_ = cos(theta); }
 ----
 

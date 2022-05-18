@@ -14,7 +14,7 @@
 
 #include "emcpose.h"
 #include "posemath.h"
-#include "runtime/rtapi_runtime/rtapi_math.h"
+#include "runtime/rtapi_math.h"
 
 //#define EMCPOSE_PEDANTIC
 

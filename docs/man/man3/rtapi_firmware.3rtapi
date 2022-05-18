@@ -26,7 +26,7 @@ rtapi_firmware.h \- RTAPI wrappers for linux kernel functionality
 
 .SH SYNTAX
 .HP
-#include <runtime/rtapi_runtime/rtapi_firmware.h>
+#include <runtime/rtapi_firmware.h>
 .HP
 struct rtapi_firmware;
 .HP

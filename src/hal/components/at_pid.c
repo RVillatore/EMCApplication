@@ -121,8 +121,8 @@
  ******************************************************************************/
 
 #include "rtapi.h"                      // RTAPI realtime OS API.
-#include "runtime/rtapi_app.h"                  // RTAPI realtime module decls.
-#include "runtime/rtapi_math.h"
+#include "rtapi_app.h"                  // RTAPI realtime module decls.
+#include "rtapi_math.h"
 #include "hal.h"                        // HAL public API decls.
 
 

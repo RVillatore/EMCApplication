@@ -40,7 +40,7 @@
 #include "calc_sequential.h"
 #endif
 #include "calc.h"
-#include <runtime/rtapi_string.h>
+#include <rtapi_string.h>
 
 void InitRungs()
 {

@@ -26,7 +26,7 @@ rtapi_slab.h \- RTAPI wrappers for linux kernel functionality
 
 .SH SYNTAX
 .HP
-#include <runtime/rtapi_slab.h>
+#include <rtapi_slab.h>
 .HP
 void *rtapi_kmalloc(size_t size, gfp_t g);
 .HP

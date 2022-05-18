@@ -10,7 +10,7 @@
 
 
 #include "rtapi.h"
-#include "runtime/rtapi_app.h"
+#include "rtapi_app.h"
 
 #include "hal.h"
 

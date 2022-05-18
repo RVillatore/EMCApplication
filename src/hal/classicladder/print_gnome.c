@@ -27,7 +27,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <runtime/rtapi_string.h>
+#include <rtapi_string.h>
 
 #include <gtk/gtk.h>
 #include <libgnomeprint/gnome-print.h>

@@ -19,8 +19,8 @@ s********************************************************************/
 
 
 #include "rtapi.h"		/* RTAPI realtime OS API */
-#include "runtime/rtapi_bitops.h"
-#include "runtime/rtapi_app.h"		/* RTAPI realtime module decls */
+#include "rtapi_bitops.h"
+#include "rtapi_app.h"		/* RTAPI realtime module decls */
                                 /* this also includes config.h */
 #include "hal.h"		/* HAL public API decls */
 #include "bcm2835.h"

@@ -15,7 +15,7 @@
 ********************************************************************/
 
 #include "rtapi.h"		/* rtapi_print_msg */
-#include "runtime/rtapi_math.h"
+#include "rtapi_math.h"
 #include "posemath.h"
 #include "blendmath.h"
 #include "emcpose.h"

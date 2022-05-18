@@ -19,7 +19,7 @@
 
 #include "config.h"
 
-#include "runtime/rtapi_math.h"
+#include "rtapi_math.h"
 #include "sincos.h"
 
 void pm_sincos(double x, double *sx, double *cx)

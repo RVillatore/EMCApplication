@@ -42,7 +42,7 @@
 #include "rtapi.h"		/* RTAPI realtime OS API */
 #include "hal.h"		/* HAL public API decls */
 #include "../hal_priv.h"	/* private HAL decls */
-#include <runtime/rtapi_mutex.h>
+#include <rtapi_mutex.h>
 
 static int argno;
 

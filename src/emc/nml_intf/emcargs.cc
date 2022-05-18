@@ -19,7 +19,7 @@
 #include "emcglb.h"		/* these decls */
 #include "emccfg.h"		/* their initial values */
 #include "rcs_print.hh"
-#include <runtime/rtapi_string.h>
+#include <rtapi_string.h>
 
 int emcGetArgs(int argc, char *argv[])
 {

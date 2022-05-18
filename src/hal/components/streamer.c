@@ -66,11 +66,11 @@
  *   3: clock by any edge
  */
 #include "rtapi.h"              /* RTAPI realtime OS API */
-#include "runtime/rtapi_app.h"          /* RTAPI realtime module decls */
+#include "rtapi_app.h"          /* RTAPI realtime module decls */
 #include "hal.h"                /* HAL public API decls */
 #include "streamer.h"		/* decls and such for fifos */
-#include "runtime/rtapi_errno.h"
-#include "runtime/rtapi_string.h"
+#include "rtapi_errno.h"
+#include "rtapi_string.h"
 
 /* module information */
 MODULE_AUTHOR("John Kasunich");

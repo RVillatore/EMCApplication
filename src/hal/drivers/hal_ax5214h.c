@@ -87,9 +87,9 @@
     information, go to www.linuxcnc.org.
 */
 
-#include "runtime/rtapi_ctype.h"	/* isspace() */
+#include "rtapi_ctype.h"	/* isspace() */
 #include "rtapi.h"		/* RTAPI realtime OS API */
-#include "runtime/rtapi_app.h"		/* RTAPI realtime module decls */
+#include "rtapi_app.h"		/* RTAPI realtime module decls */
 #include "hal.h"		/* HAL public API decls */
 
 /* If FASTIO is defined, uses outb() and inb() from <asm.io>,

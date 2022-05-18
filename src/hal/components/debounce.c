@@ -40,9 +40,9 @@
 *
 ********************************************************************/
 
-#include "runtime/rtapi_ctype.h"	/* isspace() */
+#include "rtapi_ctype.h"	/* isspace() */
 #include "rtapi.h"		/* RTAPI realtime OS API */
-#include "runtime/rtapi_app.h"		/* RTAPI realtime module decls */
+#include "rtapi_app.h"		/* RTAPI realtime module decls */
 #include "hal.h"		/* HAL public API decls */
 
 /* module information */

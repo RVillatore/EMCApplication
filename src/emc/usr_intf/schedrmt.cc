@@ -43,7 +43,7 @@
 #include "timer.hh"             // etime()
 #include "shcom.hh"             // NML Messaging functions
 #include "emcsched.hh"
-#include <runtime/rtapi_string.h>
+#include <rtapi_string.h>
 
 /*
   Using schedrmt:

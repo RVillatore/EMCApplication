@@ -27,8 +27,8 @@
 #include "posemath.h"
 #include "hal.h"
 #include "rtapi.h"
-#include "runtime/rtapi_math.h"
-#include "runtime/rtapi_app.h"
+#include "rtapi_math.h"
+#include "rtapi_app.h"
 
 // joint number assignments
 static int JX = -1;

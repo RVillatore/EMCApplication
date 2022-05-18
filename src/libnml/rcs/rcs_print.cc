@@ -28,7 +28,7 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-#include <runtime/rtapi_string.h>
+#include <rtapi_string.h>
 #include "rcs_print.hh"
 #include "linklist.hh"
 #ifndef _TIMER_H

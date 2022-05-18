@@ -261,7 +261,7 @@ option singleton yes;
 
 ;;
 
-#include "runtime/rtapi_math.h"
+#include "rtapi_math.h"
 
 typedef enum{IDLE,
              PROBE_HEIGHT,

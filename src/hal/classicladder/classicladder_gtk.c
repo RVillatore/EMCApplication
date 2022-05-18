@@ -36,7 +36,7 @@
 #include "global.h"
 #include "classicladder_gtk.h"
 
-#include <runtime/rtapi_string.h>
+#include <rtapi_string.h>
 
 GdkPixmap *pixmap = NULL;
 GtkWidget *drawing_area = NULL;

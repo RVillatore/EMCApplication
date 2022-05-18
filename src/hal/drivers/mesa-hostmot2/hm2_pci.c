@@ -18,12 +18,12 @@
 //
 
 
-#include <runtime/rtapi_pci.h>
-#include <runtime/rtapi_io.h>
+#include <rtapi_pci.h>
+#include <rtapi_io.h>
 
 #include "rtapi.h"
-#include "runtime/rtapi_app.h"
-#include "runtime/rtapi_string.h"
+#include "rtapi_app.h"
+#include "rtapi_string.h"
 
 #include "hal.h"
 

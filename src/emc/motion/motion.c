@@ -11,14 +11,14 @@
 
 #include <stdarg.h>
 #include "rtapi.h"		/* RTAPI realtime OS API */
-#include "runtime/rtapi_app.h"		/* RTAPI realtime module decls */
-#include "runtime/rtapi_string.h"       /* memset */
+#include "rtapi_app.h"		/* RTAPI realtime module decls */
+#include "rtapi_string.h"       /* memset */
 #include "hal.h"		/* decls for HAL implementation */
 #include "motion.h"
 #include "motion_debug.h"
 #include "motion_struct.h"
 #include "mot_priv.h"
-#include "runtime/rtapi_math.h"
+#include "rtapi_math.h"
 #include "homing.h"
 #include "kinematics.h"
 

@@ -38,7 +38,7 @@
 #include "rcs_print.hh"
 #include "timer.hh"             // esleep
 #include "shcom.hh"             // Common NML communications functions
-#include <runtime/rtapi_string.h>
+#include <rtapi_string.h>
 
 LINEAR_UNIT_CONVERSION linearUnitConversion;
 ANGULAR_UNIT_CONVERSION angularUnitConversion;

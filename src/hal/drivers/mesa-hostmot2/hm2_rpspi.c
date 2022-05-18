@@ -35,8 +35,8 @@
 
 #include <hal.h>
 #include <rtapi.h>
-#include <runtime/rtapi_app.h>
-#include <runtime/rtapi_slab.h>
+#include <rtapi_app.h>
+#include <rtapi_slab.h>
 
 #include "hostmot2-lowlevel.h"
 #include "hostmot2.h"

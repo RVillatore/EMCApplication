@@ -39,7 +39,7 @@
 
 
 #include "kinematics.h"
-#include "runtime/rtapi_math.h"
+#include "rtapi_math.h"
 #include "gotypes.h"
 
 
@@ -294,7 +294,7 @@ KINEMATICS_TYPE kinematicsType(void) {
 
 
 #include "rtapi.h"
-#include "runtime/rtapi_app.h"
+#include "rtapi_app.h"
 #include "hal.h"
 
 EXPORT_SYMBOL(kinematicsType);

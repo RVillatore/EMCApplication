@@ -30,7 +30,7 @@ namespace bp = boost::python;
 #include "rs274ngc_return.hh"
 #include "rs274ngc_interp.hh"
 #include "interp_internal.hh"
-#include <runtime/rtapi_string.h>
+#include <rtapi_string.h>
 
 
 

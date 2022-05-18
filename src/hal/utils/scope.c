@@ -55,7 +55,7 @@ static char *license = \
 #include <gtk/gtk.h>
 #include "miscgtk.h"		/* generic GTK stuff */
 #include "scope_usr.h"		/* scope related declarations */
-#include <runtime/rtapi_string.h>
+#include <rtapi_string.h>
 
 /***********************************************************************
 *                         GLOBAL VARIABLES                             *

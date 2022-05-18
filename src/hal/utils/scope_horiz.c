@@ -45,7 +45,7 @@
 #include <string.h>
 
 #include "rtapi.h"		/* RTAPI realtime OS API */
-#include <runtime/rtapi_mutex.h>
+#include <rtapi_mutex.h>
 #include "hal.h"		/* HAL public API decls */
 #include "../hal_priv.h"	/* private HAL decls */
 

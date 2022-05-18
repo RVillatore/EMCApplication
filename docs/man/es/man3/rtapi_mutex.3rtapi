@@ -4,7 +4,7 @@
 rtapi_mutex \- Funciones relacionadas con Mutex
 
 .SH SINTAXIS
-.B #include <runtime/rtapi_mutex.h>
+.B #include <rtapi_mutex.h>
 .sp
 .BI "int rtapi_mutex_try(unsigned long *" mutex ");"
 .br

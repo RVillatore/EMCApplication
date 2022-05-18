@@ -29,7 +29,7 @@
 #endif
 #include "posemath.h"
 
-#include "runtime/rtapi_math.h"
+#include "rtapi_math.h"
 #include <float.h>
 
 #include "sincos.h"

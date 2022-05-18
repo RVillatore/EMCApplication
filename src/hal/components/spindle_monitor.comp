@@ -14,7 +14,7 @@ license "gpl v2 or higher";
 
 ;;
 
-#include <runtime/rtapi_math.h>
+#include <rtapi_math.h>
 
 FUNCTION(_) {
 

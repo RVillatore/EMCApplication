@@ -40,7 +40,7 @@
 #include <pango/pango.h>
 #endif
 
-#include <runtime/rtapi_string.h>
+#include <rtapi_string.h>
 char * DisplayArithmExpr(char * Expr,int NumCarMax)
 {
 	static char Buffer[ARITHM_EXPR_SIZE+30];

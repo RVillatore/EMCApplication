@@ -11,7 +11,7 @@ modulesdir=/usr/lib/arm-linux-gnueabihf/machinekit/hal/module/managed
 bindir=/usr/bin
 
 # CFLAGS
-Cflags: -I/usr/include/machinekit/hal
+Cflags: -I/usr/include/machinekit/hal -I/usr/include/machinekit/hal/hal
 
 # Library flags
 Libs: 

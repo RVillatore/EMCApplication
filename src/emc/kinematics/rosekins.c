@@ -20,8 +20,8 @@
 #include "posemath.h"
 #include "hal.h"
 #include "rtapi.h"
-#include "rtapi_math.h"
-#include "rtapi_app.h"
+#include "runtime/rtapi_math.h"
+#include "runtime/rtapi_app.h"
 
 EXPORT_SYMBOL(kinematicsType);
 EXPORT_SYMBOL(kinematicsInverse);

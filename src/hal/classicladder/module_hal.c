@@ -25,8 +25,8 @@
 */
 
 #include "rtapi.h"
-#include "rtapi_app.h"
-#include "rtapi_errno.h"
+#include "runtime/rtapi_app.h"
+#include "runtime/rtapi_errno.h"
 #include "hal.h"
 
 #include "classicladder.h"

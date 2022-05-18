@@ -33,7 +33,7 @@
 #include <pango/pango.h>
 #endif
 
-#include <rtapi_string.h>
+#include <runtime/rtapi_string.h>
 void DrawSeqStep(GdkPixmap * DrawPixmap,int x,int y,int Size,StrStep * pStep,char DrawingOption)
 {
 	char BufTxt[50];

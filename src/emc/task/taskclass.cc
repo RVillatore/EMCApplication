@@ -35,7 +35,7 @@
 #include "py3c/py3c.h"
 #include "python_plugin.hh"
 #include "taskclass.hh"
-#include <rtapi_string.h>
+#include <runtime/rtapi_string.h>
 
 #define BOOST_PYTHON_MAX_ARITY 4
 #include <boost/python/dict.hpp>

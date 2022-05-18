@@ -20,7 +20,7 @@
 #ifndef __HOSTMOT2_H
 #define __HOSTMOT2_H
 
-#include <rtapi_list.h>
+#include <runtime/rtapi_list.h>
 
 #include "rtapi.h"
 #include "hal.h"

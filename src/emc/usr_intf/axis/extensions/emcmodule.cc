@@ -33,7 +33,7 @@
 #include "timer.hh"
 #include "nml_oi.hh"
 #include "rcs_print.hh"
-#include <rtapi_string.h>
+#include <runtime/rtapi_string.h>
 #include <sys/types.h>
 #include <unistd.h>
 

@@ -63,7 +63,7 @@
  */
 
 #include "kinematics.h"             /* these decls */
-#include "rtapi_math.h"
+#include "runtime/rtapi_math.h"
 
 /* ident tag */
 #ifndef __GNUC__
@@ -345,7 +345,7 @@ int main(int argc, char *argv[])
 #endif /* MAIN */
 
 #include "rtapi.h"		/* RTAPI realtime OS API */
-#include "rtapi_app.h"		/* RTAPI realtime module decls */
+#include "runtime/rtapi_app.h"		/* RTAPI realtime module decls */
 #include "hal.h"
 
 EXPORT_SYMBOL(kinematicsType);

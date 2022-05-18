@@ -68,7 +68,7 @@
 #include "nml_oi.hh"
 #include "timer.hh"
 #include "rcs_print.hh"
-#include <rtapi_string.h>
+#include <runtime/rtapi_string.h>
 #include "tooldata.hh"
 
 static bool io_debug = 0;

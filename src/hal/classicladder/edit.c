@@ -45,7 +45,7 @@
 #endif
 #include "symbols.h"
 #include "vars_names.h"
-#include <rtapi_string.h>
+#include <runtime/rtapi_string.h>
 
 /* This array give for each special elements the size used */
 #define TYPEELERULE 0

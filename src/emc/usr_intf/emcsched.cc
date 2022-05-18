@@ -38,7 +38,7 @@
 #include "timer.hh"             // esleep
 #include "shcom.hh"             // Common NML communications functions
 #include "emcsched.hh"          // Common scheduling functions
-#include <rtapi_string.h>
+#include <runtime/rtapi_string.h>
 
 #define MAX_PRIORITY 0x80000000
 #define POLYNOMIAL 0xD8  /* 11011 followed by 0's */

@@ -30,7 +30,7 @@
 #include "global.h"
 #include "editproperties_gtk.h"
 #include "edit.h"
-#include <rtapi_string.h>
+#include <runtime/rtapi_string.h>
 
 GtkWidget *PropertiesWindow;
 GtkWidget *PropLabelParam[NBR_PARAMS_PER_OBJ],*PropEntryParam[NBR_PARAMS_PER_OBJ];

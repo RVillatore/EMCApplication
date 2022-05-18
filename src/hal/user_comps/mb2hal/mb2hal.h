@@ -7,10 +7,10 @@
 
 #include "rtapi.h"
 #ifdef RTAPI
-#include "rtapi_app.h"
+#include "runtime/rtapi_app.h"
 #endif
-#include "rtapi_string.h"
-#include "rtapi_errno.h"
+#include "runtime/rtapi_string.h"
+#include "runtime/rtapi_errno.h"
 #include "hal.h"
 #include "inifile.h"
 

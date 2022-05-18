@@ -35,7 +35,7 @@
 //#include "hardware.h"
 #include "global.h"
 #include "config_gtk.h"
-#include <rtapi_string.h>
+#include <runtime/rtapi_string.h>
 
 #ifdef OLD_TIMERS_MONOS_SUPPORT
 #define NBR_OBJECTS 19

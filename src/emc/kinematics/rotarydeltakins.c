@@ -17,8 +17,8 @@
 
 #include "hal.h"
 #include "kinematics.h"
-#include "rtapi_math.h"
-#include "rtapi_app.h"
+#include "runtime/rtapi_math.h"
+#include "runtime/rtapi_app.h"
 
 #include "rotarydeltakins-common.h"
 

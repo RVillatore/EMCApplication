@@ -15,7 +15,7 @@ Cflags: -I/usr/include/machinekit/hal -I/usr/include/machinekit/hal/hal -I/usr/i
 
 # Library flags
 Libs: 
-hal_lib_dir=
+hal_lib_dir=/usr/lib/arm-linux-gnueabihf
 lib_ulapi=-llibmkhunmanaged_runtime
 lib_hal=-llibmkhunmanaged_hal
 lib_halcmd=-llibmkhhal_command

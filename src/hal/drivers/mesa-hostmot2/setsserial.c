@@ -18,11 +18,11 @@
 //
 //    The code in this file is based on UFLBP.PAS by Peter C. Wallace.  
 
-#include <runtime/rtapi_firmware.h>
-#include <runtime/rtapi_string.h>
-#include <runtime/rtapi_gfp.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_firmware.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_string.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_gfp.h>
 #include "rtapi.h"
-#include "runtime/rtapi_app.h"
+#include "/usr/include/machinekit/hal/runtime/rtapi_app.h"
 #include "hal.h"
 #include "hostmot2.h"
 #include "sserial.h"

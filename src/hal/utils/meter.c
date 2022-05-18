@@ -60,12 +60,12 @@
 #include "rtapi.h"		/* RTAPI realtime OS API */
 #include "hal.h"		/* HAL public API decls */
 #include "../hal_priv.h"	/* private HAL decls */
-#include <runtime/rtapi_mutex.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_mutex.h>
 
 #include <gtk/gtk.h>
 #include "miscgtk.h"		/* generic GTK stuff */
 #include <gdk/gdkkeysyms.h>
-#include <runtime/rtapi_string.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_string.h>
 
 /***********************************************************************
 *                            TYPEDEFS                                  *

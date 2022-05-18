@@ -40,7 +40,7 @@
 #include "classicladder_gtk.h"
 #include "vars_names.h"
 #include "symbols.h"
-#include <runtime/rtapi_string.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_string.h>
 
 #include "spy_vars_gtk.h"
 

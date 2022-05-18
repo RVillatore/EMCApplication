@@ -61,7 +61,7 @@ extern "C"
 #endif
 
 
-#include <runtime/rtapi_string.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_string.h>
 #include "nml_mod.hh"
 #include "nml_oi.hh"		// NML_ERROR, NML_TEXT, NML_DISPLAY
 #include "rcs_print.hh"

@@ -28,7 +28,7 @@
 #include "interp_internal.hh"
 #include "rs274ngc_interp.hh"
 #include <cmath>
-#include <runtime/rtapi_string.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_string.h>
 
 using namespace interp_param_global;
 

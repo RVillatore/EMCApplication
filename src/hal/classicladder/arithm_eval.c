@@ -40,7 +40,7 @@
 #include "vars_names.h"
 #endif
 #include "arithm_eval.h"
-#include <runtime/rtapi_string.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_string.h>
 
 
 char * Expr;

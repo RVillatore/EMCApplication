@@ -16,11 +16,11 @@
 */
 
 #include "posemath.h"
-#include "runtime/rtapi_math.h"
+#include "/usr/include/machinekit/hal/runtime/rtapi_math.h"
 #include "kinematics.h"             /* decls for kinematicsForward, etc. */
 
 #include "rtapi.h"		/* RTAPI realtime OS API */
-#include "runtime/rtapi_app.h"		/* RTAPI realtime module decls */
+#include "/usr/include/machinekit/hal/runtime/rtapi_app.h"		/* RTAPI realtime module decls */
 #include "hal.h"
 
 struct scara_data {

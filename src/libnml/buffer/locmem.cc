@@ -22,7 +22,7 @@
 #include "cms.hh"		// class CMS
 #include "linklist.hh"		// class LinkedList
 #include "rcs_print.hh"		// rcs_print_error()
-#include <runtime/rtapi_string.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_string.h>
 
 #ifdef __cplusplus
 extern "C" {

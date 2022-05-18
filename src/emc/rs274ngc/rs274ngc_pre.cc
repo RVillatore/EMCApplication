@@ -89,7 +89,7 @@ include an option for suppressing superfluous commands.
 #include <set>
 #include <stdexcept>
 #include <new>
-#include <runtime/rtapi_string.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_string.h>
 
 #include "rtapi.h"
 #include "inifile.hh"		// INIFILE

@@ -12,7 +12,7 @@
 ********************************************************************/
 
 #include "rtapi.h"
-#include "runtime/rtapi_math.h"
+#include "/usr/include/machinekit/hal/runtime/rtapi_math.h"
 #include "motion.h"
 #include "hal.h"
 #include "mot_priv.h"

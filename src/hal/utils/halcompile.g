@@ -268,12 +268,12 @@ def prologue(f):
     print("""\
 #include "rtapi.h"
 #ifdef RTAPI
-#include "runtime/rtapi_app.h"
+#include "/usr/include/machinekit/hal/runtime/rtapi_app.h"
 #endif
-#include "runtime/rtapi_string.h"
-#include "runtime/rtapi_errno.h"
+#include "/usr/include/machinekit/hal/runtime/rtapi_string.h"
+#include "/usr/include/machinekit/hal/runtime/rtapi_errno.h"
 #include "hal.h"
-#include "runtime/rtapi_math64.h"
+#include "/usr/include/machinekit/hal/runtime/rtapi_math64.h"
 
 static int comp_id;
 """, file=f)

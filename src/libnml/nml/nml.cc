@@ -30,7 +30,7 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-#include <runtime/rtapi_string.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_string.h>
 #include "nml.hh"		/* class NML */
 #include "nmlmsg.hh"		/* class NMLmsg */
 #include "cms.hh"		/* class CMS */

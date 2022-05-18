@@ -23,7 +23,7 @@
 */
 #include <stdio.h>
 #include <string.h>
-#include <runtime/rtapi_string.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_string.h>
 #include "tooldata.hh"
 
 #define UNEXPECTED_MSG fprintf(stderr,"UNEXPECTED %s %d\n",__FILE__,__LINE__);

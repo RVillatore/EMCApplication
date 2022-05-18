@@ -31,7 +31,7 @@
 #include "symbols.h"
 #include "vars_names.h"
 #include "emc_mods.h"
-#include <runtime/rtapi_string.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_string.h>
 
 
 

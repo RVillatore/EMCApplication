@@ -57,11 +57,11 @@
 #include "hal.h"		/* HAL public API decls */
 #include "hal_priv.h"		/* HAL private decls */
 
-#include "runtime/rtapi_string.h"
-#include "runtime/rtapi_atomic.h"
+#include "/usr/include/machinekit/hal/runtime/rtapi_string.h"
+#include "/usr/include/machinekit/hal/runtime/rtapi_atomic.h"
 
 #ifdef RTAPI
-#include "runtime/rtapi_app.h"
+#include "/usr/include/machinekit/hal/runtime/rtapi_app.h"
 /* module information */
 MODULE_AUTHOR("John Kasunich");
 MODULE_DESCRIPTION("Hardware Abstraction Layer for EMC");

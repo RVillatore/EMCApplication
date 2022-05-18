@@ -14,9 +14,9 @@
 #include "hal.h"
 #include "rtapi.h"
 #include "rtapi.h"      /* RTAPI realtime OS API */
-#include "runtime/rtapi_app.h"  /* RTAPI realtime module decls */
-#include "runtime/rtapi_math.h"
-#include "runtime/rtapi_string.h"
+#include "/usr/include/machinekit/hal/runtime/rtapi_app.h"  /* RTAPI realtime module decls */
+#include "/usr/include/machinekit/hal/runtime/rtapi_math.h"
+#include "/usr/include/machinekit/hal/runtime/rtapi_string.h"
 #include "kinematics.h"
 
 #define VTVERSION VTKINEMATICS_VERSION1

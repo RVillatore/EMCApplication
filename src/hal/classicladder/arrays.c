@@ -33,7 +33,7 @@
 
 //for emc next 2 lines
 #include "rtapi.h"
-#include "runtime/rtapi_string.h"
+#include "/usr/include/machinekit/hal/runtime/rtapi_string.h"
 //#include <linux/string.h>
 
 #include "classicladder.h"

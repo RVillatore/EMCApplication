@@ -32,7 +32,7 @@
 #include "classicladder_gtk.h"
 #include "vars_names.h"
 #include "symbols_gtk.h"
-#include <runtime/rtapi_string.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_string.h>
 
 GtkWidget *SymbolsWindow;
 GtkListStore *ListStore;

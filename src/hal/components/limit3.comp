@@ -23,7 +23,7 @@ function _;
 license "GPL";
 ;;
 
-#include "runtime/rtapi_math.h"
+#include "/usr/include/machinekit/hal/runtime/rtapi_math.h"
 
 #define SET_NEXT_STATE(_out, _in)			\
     do {						\

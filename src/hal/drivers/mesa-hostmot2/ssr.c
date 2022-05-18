@@ -35,7 +35,7 @@
 //
 
 
-#include <runtime/rtapi_slab.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_slab.h>
 
 #include "rtapi.h"
 #include "hal.h"

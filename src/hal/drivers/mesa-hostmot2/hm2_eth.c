@@ -31,14 +31,14 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-#include <runtime/rtapi_slab.h>
-#include <runtime/rtapi_ctype.h>
-#include <runtime/rtapi_list.h>
-#include <runtime/rtapi_math64.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_slab.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_ctype.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_list.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_math64.h>
 
 #include "rtapi.h"
-#include "runtime/rtapi_app.h"
-#include "runtime/rtapi_string.h"
+#include "/usr/include/machinekit/hal/runtime/rtapi_app.h"
+#include "/usr/include/machinekit/hal/runtime/rtapi_string.h"
 
 #include "hal.h"
 

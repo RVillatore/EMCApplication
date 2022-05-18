@@ -54,7 +54,7 @@
 #include "rcs_print.hh"
 #include "sockets.h"		// TCP/IP common socket functions
 #include "shcom.hh"		// Common NML messaging routines
-#include <runtime/rtapi_string.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_string.h>
 
 #define DEFAULT_SERVER		"localhost"
 #define DEFAULT_PORT            13666

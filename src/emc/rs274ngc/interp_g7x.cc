@@ -925,7 +925,7 @@ void g7x::add_distance(double distance) {
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <string>
-#include "runtime/rtapi_math.h"
+#include "/usr/include/machinekit/hal/runtime/rtapi_math.h"
 #include "rs274ngc.hh"
 #include "rs274ngc_return.hh"
 #include "rs274ngc_interp.hh"

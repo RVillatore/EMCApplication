@@ -70,7 +70,7 @@
 #endif
 #endif
 
-#include <runtime/rtapi_string.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_string.h>
 #ifdef GTK_INTERFACE
 #include <gtk/gtk.h>
 #endif

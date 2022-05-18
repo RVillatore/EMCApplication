@@ -8,9 +8,9 @@
 #include "hal.h"
 #include "rtapi.h"
 #include "rtapi.h"
-#include "runtime/rtapi_app.h"
-#include "runtime/rtapi_math.h"
-#include "runtime/rtapi_string.h"
+#include "/usr/include/machinekit/hal/runtime/rtapi_app.h"
+#include "/usr/include/machinekit/hal/runtime/rtapi_math.h"
+#include "/usr/include/machinekit/hal/runtime/rtapi_string.h"
 
 static struct data {
     hal_s32_t joints[EMCMOT_MAX_JOINTS];

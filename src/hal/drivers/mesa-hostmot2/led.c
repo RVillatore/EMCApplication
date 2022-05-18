@@ -20,11 +20,11 @@
 // Onboard LED driver for the Mesa FPGA cards
 
 
-#include <runtime/rtapi_slab.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_slab.h>
 
 #include "rtapi.h"
-#include "runtime/rtapi_string.h"
-#include "runtime/rtapi_math.h"
+#include "/usr/include/machinekit/hal/runtime/rtapi_string.h"
+#include "/usr/include/machinekit/hal/runtime/rtapi_math.h"
 
 #include "hal.h"
 

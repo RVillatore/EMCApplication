@@ -42,8 +42,8 @@
 #include "hal.h"		/* HAL public API decls */
 #include "../hal_priv.h"	/* private HAL decls */
 #include "halcmd_commands.h"
-#include <runtime/rtapi_mutex.h>
-#include <runtime/rtapi_string.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_mutex.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_string.h>
 
 #include <stdio.h>
 #include <stdlib.h>

@@ -32,7 +32,7 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-#include <runtime/rtapi_string.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_string.h>
 #include "cms.hh"		/* class CMS */
 #include "cms_up.hh"		/* class CMS_UPDATER */
 #include "cms_xup.hh"		/* class CMS_XDR_UPDATER */

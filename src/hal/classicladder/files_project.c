@@ -42,7 +42,7 @@
 #include "files.h"
 #include "files_sequential.h"
 #include "files_project.h"
-#include <runtime/rtapi_string.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_string.h>
 
 
 //#ifdef GTK_INTERFACE

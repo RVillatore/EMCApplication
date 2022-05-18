@@ -32,7 +32,7 @@ pin out bit active "if active is true, the planner is requesting movement.";
 function update;
 license "GPL";
 ;;
-#include "runtime/rtapi_math.h"
+#include "/usr/include/machinekit/hal/runtime/rtapi_math.h"
 FUNCTION(update) {
     double max_dv, tiny_dp, pos_err, vel_req;
 

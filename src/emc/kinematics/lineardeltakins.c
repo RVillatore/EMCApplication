@@ -16,8 +16,8 @@
 
 #include "hal.h"
 #include "kinematics.h"
-#include "runtime/rtapi_math.h"
-#include "runtime/rtapi_app.h"
+#include "/usr/include/machinekit/hal/runtime/rtapi_math.h"
+#include "/usr/include/machinekit/hal/runtime/rtapi_app.h"
 
 #include "lineardeltakins-common.h"
 

@@ -35,7 +35,7 @@
 #include <limits.h>
 #include <fcntl.h>
 #include "rtapi.h"
-#include <runtime/rtapi_string.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_string.h>
 
 #include "hy_comm.h"
  

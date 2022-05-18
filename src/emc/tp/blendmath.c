@@ -15,7 +15,7 @@
 #include "tc_types.h"
 #include "tc.h"
 #include "tp_types.h"
-#include "runtime/rtapi_math.h"
+#include "/usr/include/machinekit/hal/runtime/rtapi_math.h"
 #include "spherical_arc.h"
 #include "blendmath.h"
 #include "tp_debug.h"

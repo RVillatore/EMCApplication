@@ -12,7 +12,7 @@
 *
 ********************************************************************/
 
-#include "runtime/rtapi_math.h"
+#include "/usr/include/machinekit/hal/runtime/rtapi_math.h"
 #include "kinematics.h"		/* these decls */
 
 int kinematicsForward(const double *joints,
@@ -71,7 +71,7 @@ KINEMATICS_TYPE kinematicsType()
 }
 
 #include "rtapi.h"		/* RTAPI realtime OS API */
-#include "runtime/rtapi_app.h"		/* RTAPI realtime module decls */
+#include "/usr/include/machinekit/hal/runtime/rtapi_app.h"		/* RTAPI realtime module decls */
 #include "hal.h"
 
 EXPORT_SYMBOL(kinematicsType);

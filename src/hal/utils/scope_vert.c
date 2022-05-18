@@ -45,7 +45,7 @@
 #include <string.h>
 
 #include "rtapi.h"		/* RTAPI realtime OS API */
-#include <runtime/rtapi_mutex.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_mutex.h>
 #include "hal.h"		/* HAL public API decls */
 #include "../hal_priv.h"	/* private HAL decls */
 
@@ -54,7 +54,7 @@
 
 #include "miscgtk.h"		/* generic GTK stuff */
 #include "scope_usr.h"		/* scope related declarations */
-#include <runtime/rtapi_string.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_string.h>
 
 #define BUFLEN 80		/* length for sprintf buffers */
 

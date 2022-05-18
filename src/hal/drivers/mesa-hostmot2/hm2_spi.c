@@ -28,9 +28,9 @@
 #include <endian.h>
 
 #include <rtapi.h>
-#include <runtime/rtapi_app.h>
-#include <runtime/rtapi_bool.h>
-#include <runtime/rtapi_gfp.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_app.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_bool.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_gfp.h>
 #include <hal.h>
 
 #include "hostmot2-lowlevel.h"

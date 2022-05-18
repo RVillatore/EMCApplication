@@ -43,7 +43,7 @@
 #include "rcs_print.hh"
 #include "timer.hh"             // etime()
 #include "shcom.hh"             // NML Messaging functions
-#include <runtime/rtapi_string.h>
+#include </usr/include/machinekit/hal/runtime/rtapi_string.h>
 
 /*
   Using linuxcncrsh:

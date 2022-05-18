@@ -11,7 +11,7 @@ modulesdir=/usr/lib/arm-linux-gnueabihf/machinekit/hal/module/managed
 bindir=/usr/bin
 
 # CFLAGS
-Cflags: -I/usr/include/machinekit/hal -I/usr/include/machinekit/hal/hal -I/usr/include/machinekit/hal/hal_command -I/usr/include/machinekit/hal/hal_parport -I/usr/include/machinekit/hal/halscope_memory -I/usr/include/machinekit/hal/hostmot2 -I/usr/include/machinekit/hal/machinetalk -I/usr/include/machinekit/hal/misc_gtk -I/usr/include/machinekit/hal/mkini -I/usr/include/machinekit/hal/pru_app_loader -I/usr/include/machinekit/hal/pru_defines -I/usr/include/machinekit/hal/raspi_cpuinfo -I/usr/include/machinekit/hal/runtime -I/usr/include/machinekit/hal/samstr_memdefs -I/usr/include/machinekit/hal/syslog_async -I/usr/include/machinekit/hal/upci -I/usr/include/machinekit/hal/user_pci
+Cflags: -I/usr/include/machinekit/hal -I/usr/include/machinekit/hal/hal -I/usr/include/machinekit/hal/hal_command -I/usr/include/machinekit/hal/hal_parport -I/usr/include/machinekit/hal/halscope_memory -I/usr/include/machinekit/hal/hostmot2 -I/usr/include/machinekit/hal/machinetalk -I/usr/include/machinekit/hal/misc_gtk -I/usr/include/machinekit/hal/mkini -I/usr/include/machinekit/hal/pru_app_loader -I/usr/include/machinekit/hal/pru_defines -I/usr/include/machinekit/hal/raspi_cpuinfo -I/usr/include/machinekit/hal/runtime -I/usr/include/machinekit/hal/samstr_memdefs -I/usr/include/machinekit/hal/syslog_async -I/usr/include/machinekit/hal/upci
 
 # Library flags
 Libs: 

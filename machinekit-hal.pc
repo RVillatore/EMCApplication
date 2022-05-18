@@ -6,12 +6,12 @@ Version: 0.4
 # Paths
 prefix=/usr
 exec_prefix=/usr
-includedir=/usr/include/machinekit/hal/hal,/usr/include/machinekit/hal/hal_command,/usr/include/machinekit/hal/hal_parport, /usr/include/machinekit/hal/halscope_memory,/usr/include/machinekit/hal/hostmot2,/usr/include/machinekit/hal/machinetalk,/usr/include/machinekit/hal/misc_gtk,/usr/include/machinekit/hal/mkini,/usr/include/machinekit/hal/pru_app_loader,/usr/include/machinekit/hal/pru_defines,/usr/include/machinekit/hal/raspi_cpuinfo,/usr/include/machinekit/hal/runtime,/usr/include/machinekit/hal/samstr_memdefs,/usr/include/machinekit/hal/syslog_async,/usr/include/machinekit/hal/upci,/usr/include/machinekit/hal/user_pci
+includedir=/usr/include/machinekit/hal/
 modulesdir=/usr/lib/arm-linux-gnueabihf/machinekit/hal/module/managed
 bindir=/usr/bin
 
 # CFLAGS
-Cflags: -I/usr/include/machinekit/hal/hal, -I,/usr/include/machinekit/hal/hal_command,-I/usr/include/machinekit/hal/hal_parport,-I/usr/include/machinekit/hal/halscope_memory,-I/usr/include/machinekit/hal/hostmot2,-I/usr/include/machinekit/hal/machinetalk,-I/usr/include/machinekit/hal/misc_gtk,-I/usr/include/machinekit/hal/mkini,-I/usr/include/machinekit/hal/pru_app_loader,-I/usr/include/machinekit/hal/pru_defines,-I/usr/include/machinekit/hal/raspi_cpuinfo,-I/usr/include/machinekit/hal/runtime,-I/usr/include/machinekit/hal/samstr_memdefs,-I/usr/include/machinekit/hal/syslog_async,-I/usr/include/machinekit/hal/upci,-I/usr/include/machinekit/hal/user_pci
+Cflags: -I/usr/include/machinekit/hal, -I/usr/include/machinekit/hal/hal, -I,/usr/include/machinekit/hal/hal_command,-I/usr/include/machinekit/hal/hal_parport,-I/usr/include/machinekit/hal/halscope_memory,-I/usr/include/machinekit/hal/hostmot2,-I/usr/include/machinekit/hal/machinetalk,-I/usr/include/machinekit/hal/misc_gtk,-I/usr/include/machinekit/hal/mkini,-I/usr/include/machinekit/hal/pru_app_loader,-I/usr/include/machinekit/hal/pru_defines,-I/usr/include/machinekit/hal/raspi_cpuinfo,-I/usr/include/machinekit/hal/runtime,-I/usr/include/machinekit/hal/samstr_memdefs,-I/usr/include/machinekit/hal/syslog_async,-I/usr/include/machinekit/hal/upci,-I/usr/include/machinekit/hal/user_pci
 
 # Library flags
 Libs: 

@@ -16,7 +16,7 @@ Cflags: -I/usr/include/machinekit/hal -I/usr/include/machinekit/hal/hal -I/usr/i
 # Library flags
 Libs: 
 hal_lib_dir=
-lib_ulapi=-lmkhunmanaged_runtime -lmkhruntime_config -lmkhmanaged_rtapi_pci
+lib_ulapi=-lmkhunmanaged_runtime -lmkhruntime_config -lmkhmanaged_rtapi_pci -lmkhruntime_math
 lib_hal=-lmkhunmanaged_hal
 lib_halcmd=-lmkhhal_command
 lib_rtapi_math=-lmkhruntime_math

@@ -17,8 +17,8 @@ Cflags: -I/usr/include/machinekit/hal -I/usr/include/machinekit/hal/hal -I/usr/i
 Libs: 
 hal_lib_dir=
 lib_ulapi= -lc -lmkhruntime_math -lmkhruntime_memory_api
-lib_hal=-lmkhunmanaged_hal
-lib_halcmd=-lmkhhal_command
+lib_hal=-lc -lmkhunmanaged_hal
+lib_halcmd=-lc -lmkhhal_command
 lib_rtapi_math=-lmkhruntime_math
 
 # Other build variables

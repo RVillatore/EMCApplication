@@ -213,16 +213,26 @@ AS_IF([test -n "$with_hal" -a "$with_hal" != no],
       INTERNAL_HAL=false
       RTS=external-hal
       BUILD_SYS='ext-hal'
-      HAL_CFLAGS="$(pkg-config --cflags $with_hal)"
-      HAL_LIBS="$(pkg-config --libs $with_hal)"
-      HAL_MODULES_DIR="$(pkg-config --variable=modulesdir $with_hal)"
-      HAL_BIN_DIR="$(pkg-config --variable=bindir $with_hal)"
-      HAL_L_ULAPI="$(pkg-config --variable=lib_ulapi $with_hal)"
-      HAL_L_HAL="$(pkg-config --variable=lib_hal $with_hal)"
-      HAL_L_HALCMD="$(pkg-config --variable=lib_halcmd $with_hal)"
-      HAL_L_RTAPI_MATH="$(pkg-config --variable=lib_rtapi_math $with_hal)"
-      MODEXT="$(pkg-config --variable=modext $with_hal)"
-      REALTIME="$(pkg-config --variable=realtime $with_hal)"
+    #  HAL_CFLAGS="$(pkg-config --cflags $with_hal)"
+    #  HAL_LIBS="$(pkg-config --libs $with_hal)"
+    #  HAL_MODULES_DIR="$(pkg-config --variable=modulesdir $with_hal)"
+    #  HAL_BIN_DIR="$(pkg-config --variable=bindir $with_hal)"
+    #  HAL_L_ULAPI="$(pkg-config --variable=lib_ulapi $with_hal)"
+    #  HAL_L_HAL="$(pkg-config --variable=lib_hal $with_hal)"
+    #  HAL_L_HALCMD="$(pkg-config --variable=lib_halcmd $with_hal)"
+    #  HAL_L_RTAPI_MATH="$(pkg-config --variable=lib_rtapi_math $with_hal)"
+    #  MODEXT="$(pkg-config --variable=modext $with_hal)"
+    #  REALTIME="$(pkg-config --variable=realtime $with_hal)"
+    HAL_CFLAGS="-I/usr/include/linuxcnc/ -I/usr/include/machinekit/ -I/usr/include/machinekit/hal -I/usr/include/machinekit/hal/hal -I/usr/include/machinekit/hal/hal_command -I/usr/include/machinekit/hal/runtime"
+      HAL_LIBS="-L/usr/lib -L/usr/lib/arm-linux-gnueabihf"
+      HAL_MODULES_DIR="/usr/lib/arm-linux-gnueabihf/machinekit/hal/module/managed/"
+      HAL_BIN_DIR="/usr/bin"
+      HAL_L_ULAPI="-lmkhunmanaged_runtime"
+      HAL_L_HAL="-lmkhunmanaged_hal"
+      HAL_L_HALCMD="-lmkhhal_command"
+      HAL_L_RTAPI_MATH="-lmkhruntime_math"
+      MODEXT=".so"
+      REALTIME="/usr/bin/realtime"
     else
       AC_MSG_ERROR([--with-hal=${with_hal}:  pkgconfig configuration not found])
     fi

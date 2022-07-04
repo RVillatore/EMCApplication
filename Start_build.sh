@@ -17,6 +17,7 @@ curl -1sLf \
   | sudo -E bash
 sudo apt update
 cd /machinekit/emca
+export PKG_CONFIG_PATH=/machinekit/emca
 ./debian/configure machinekit-hal=0.5.21099-1.git2c2ff0e51~bionic no-docs
 mk-build-deps -irs sudo -t 'apt-cudf-get --solver aspcud -o Debug::pkgProblemResolver=0 -o APT::Install-Recommends=0'
 dpkg-buildpackage -us -uc

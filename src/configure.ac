@@ -224,7 +224,7 @@ AS_IF([test -n "$with_hal" -a "$with_hal" != no],
     #  MODEXT="$(pkg-config --variable=modext $with_hal)"
     #  REALTIME="$(pkg-config --variable=realtime $with_hal)"
     HAL_CFLAGS="-I/usr/include/linuxcnc/ -I/usr/include/machinekit/ -I/usr/include/machinekit/hal -I/usr/include/machinekit/hal/hal -I/usr/include/machinekit/hal/hal_command -I/usr/include/machinekit/hal/runtime"
-      HAL_LIBS="-L/usr/lib -L/usr/lib/arm-linux-gnueabihf"
+      HAL_LIBS="-L/usr/lib -L/usr/lib/arm-linux-gnueabihf -lmkhunmanaged_runtime"
       HAL_MODULES_DIR="/usr/lib/arm-linux-gnueabihf/machinekit/hal/module/managed/"
       HAL_BIN_DIR="/usr/bin"
       HAL_L_ULAPI="-lmkhunmanaged_runtime"

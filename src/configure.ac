@@ -223,7 +223,7 @@ AS_IF([test -n "$with_hal" -a "$with_hal" != no],
     #  HAL_L_RTAPI_MATH="$(pkg-config --variable=lib_rtapi_math $with_hal)"
     #  MODEXT="$(pkg-config --variable=modext $with_hal)"
     #  REALTIME="$(pkg-config --variable=realtime $with_hal)"
-    HAL_CFLAGS="-I/usr/include/linuxcnc/ -I/usr/include/machinekit/ -I/usr/include/machinekit/hal -I/usr/include/machinekit/hal/hal -I/usr/include/machinekit/hal/hal_command -I/usr/include/machinekit/hal/runtime"
+      HAL_CFLAGS="-I/usr/include/linuxcnc/ -I/usr/include/machinekit/ -I/usr/include/machinekit/hal -I/usr/include/machinekit/hal/hal -I/usr/include/machinekit/hal/hal_command -I/usr/include/machinekit/hal/runtime"
       HAL_LIBS="-L/usr/lib -L/usr/lib/arm-linux-gnueabihf -lmkhunmanaged_runtime"
       HAL_MODULES_DIR="/usr/lib/arm-linux-gnueabihf/machinekit/hal/module/managed/"
       HAL_BIN_DIR="/usr/bin"
@@ -1151,7 +1151,7 @@ AC_ARG_WITH(python,
     [
         PYTHON=$withval
     ],[
-        PYTHON=python2
+        PYTHON=python3
     ])
 AC_PATH_PROG(PYTHON,$PYTHON,"none")
 if test $PYTHON = "none"
@@ -1582,7 +1582,7 @@ then
 
 else
 
-	if $PYTHON -c 'import pango,cairo'; then
+	if $PYTHON -c 'import Pango,cairo'; then
 	    AC_MSG_RESULT([found])
 	else
 	    AC_MSG_RESULT(no)

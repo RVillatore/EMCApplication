@@ -14,7 +14,7 @@
 # control compilation and installation of the executable"
 
 # Uncomment this to turn on verbose mode.
-#export DH_VERBOSE=1
+export DH_VERBOSE=1
 
 kernel_version = @KERNEL_VERSION@
 enable_build_documentation = @ENABLE_BUILD_DOCUMENTATION@
@@ -25,6 +25,7 @@ ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
     MAKEFLAGS += -j$(NUMJOBS)
 endif
 
+MAKEFLAGS += -d
 
 build: build-arch build-indep
 build-arch: build-stamp
@@ -34,13 +35,13 @@ build-stamp:
 
 # Add here commands to compile the package.
 	cd src && ./autogen.sh
-	cd src && ./configure \
+	cd src && PYTHON=/usr/bin/python3 ./configure \
 	    --prefix=/usr --sysconfdir=/etc \
 	    --mandir=/usr/share/man \
 	    $(configure_realtime_arg) \
             $(enable_build_documentation) \
 	    --disable-check-runtime-deps \
-            --with-python=/usr/bin/python2.7
+            --with-python=/usr/bin/python3
 	(cd src; $(MAKE) $(MAKEFLAGS))
 	$(if $(enable_build_documentation),(cd src; $(MAKE) $(MAKEFLAGS) docs))
 	touch build-stamp

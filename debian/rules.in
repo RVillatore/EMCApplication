@@ -35,12 +35,13 @@ build-stamp:
 
 # Add here commands to compile the package.
 	cd src && ./autogen.sh
-	cd src && PYTHON=/usr/bin/python3 ./configure \
+	cd src && ./configure \
 	    --prefix=/usr --sysconfdir=/etc \
 	    --mandir=/usr/share/man \
 	    $(configure_realtime_arg) \
             $(enable_build_documentation) \
 	    --disable-check-runtime-deps \
+            --enable-non-distributable=yes \
             --with-python=/usr/bin/python3
 	(cd src; $(MAKE) $(MAKEFLAGS))
 	$(if $(enable_build_documentation),(cd src; $(MAKE) $(MAKEFLAGS) docs))
@@ -57,7 +58,8 @@ clean: debian/control
 	    --mandir=/usr/share/man \
 	    $(configure_realtime_arg) \
             $(enable_build_documentation) \
-	    --disable-check-runtime-deps
+	    --disable-check-runtime-deps \
+            --enable-non-distributable=yes
 	cd src && $(MAKE) clean -s
 	rm -f Makefile.inc
 	rm -f src/config.log src/config.status

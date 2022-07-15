@@ -40,5 +40,5 @@ TARGETS += ../bin/linuxcnclcd
 	    ../lib/libnml.so.0 $(LIB_HAL_SO) $(LIB_LCNCULAPI_SO) \
 	     ../lib/libtooldata.so.0
 	$(ECHO) Linking $(notdir $@)
-	$(Q)$(CXX) $(CXXFLAGS) -o $@ $(ULFLAGS) $(L_HAL) $(L_ULAPI) $^ $(LDFLAGS)
+	$(Q)$(CXX) $(CXXFLAGS) -Wl,-fuse-ld=ld.bfd,--copy-dt-needed-entries,-soname,$(notdir $@) -shared -o $@ $(ULFLAGS) $(L_HAL) $(L_ULAPI) $^ $(LDFLAGS)
 TARGETS += ../bin/halui

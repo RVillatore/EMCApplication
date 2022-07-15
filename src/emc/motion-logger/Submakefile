@@ -7,5 +7,5 @@ USERSRCS += $(MOTION_LOGGER_SRCS)
 	    $(call TOOBJS, $(MOTION_LOGGER_SRCS)) ../lib/libnml.so.0 \
 	    $(LIB_HAL_SO) $(LIB_LCNCULAPI_SO)
 	$(ECHO) Linking $(notdir $@)
-	$(Q)$(CC) $(LDFLAGS) -o $@ $(L_HAL) $(L_ULAPI) $^
+	$(Q)$(CC) $(LDFLAGS) -Wl,-fuse-ld=ld.bfd,--copy-dt-needed-entries,-soname,$(notdir $@) -shared -o $@ $(L_HAL) $(L_ULAPI) $^
 

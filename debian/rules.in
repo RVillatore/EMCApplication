@@ -40,7 +40,8 @@ build-stamp:
 	    $(configure_realtime_arg) \
             $(enable_build_documentation) \
 	    --disable-check-runtime-deps \
-            --with-python=/usr/bin/python2.7
+            --with-python=/usr/bin/python2.7 \
+            --enable-non-distributable=yes
 	(cd src; $(MAKE) $(MAKEFLAGS))
 	$(if $(enable_build_documentation),(cd src; $(MAKE) $(MAKEFLAGS) docs))
 	touch build-stamp
@@ -56,7 +57,8 @@ clean: debian/control
 	    --mandir=/usr/share/man \
 	    $(configure_realtime_arg) \
             $(enable_build_documentation) \
-	    --disable-check-runtime-deps
+	    --disable-check-runtime-deps \
+            --enable-non-distributable=yes
 	cd src && $(MAKE) clean -s
 	rm -f Makefile.inc
 	rm -f src/config.log src/config.status

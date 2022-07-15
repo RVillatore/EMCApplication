@@ -19,7 +19,7 @@ PYTARGETS += $(DELTAMODULE)
 	    $(call TOOBJS, $(GENSERKINSSRCS)) $(LIB_HAL_SO) \
 	    ../lib/libposemath.so $(LIB_LCNCULAPI_SO)
 	$(ECHO) Linking $(notdir $@)
-	$(Q)$(CC) $(LDFLAGS) -o $@ $(L_HAL) $(L_ULAPI) $(L_RTAPI_MATH) $^
+	$(Q)$(CC) $(LDFLAGS) -Wl,-fuse-ld=ld.bfd,--copy-dt-needed-entries,-soname,$(notdir $@) -shared -o $@ $(L_HAL) $(L_ULAPI) $(L_RTAPI_MATH) $^
 TARGETS += ../bin/genserkins
 
 RDELTAMODULESRCS := emc/kinematics/rotarydeltakins.cc

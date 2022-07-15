@@ -15,7 +15,7 @@ bindir=/usr/bin
 Cflags: -I/usr/include/linuxcnc/  -I/usr/include/machinekit -I/usr/include/machinekit/hal -I/usr/include/machinekit/hal/hal -I/usr/include/machinekit/hal/hal_command -I/usr/include/machinekit/hal/runtime -I/usr/include/machinekit/hal/hostmot2
 # Library flags
 Libs: -L/usr/lib -L/usr/lib/arm-linux-gnueabihf
-hal_lib_dir=
+hal_lib_dir=/usr/lib/arm-linux-gnueabihf
 lib_ulapi=-lmkhunmanaged_runtime
 lib_hal=-lmkhunmanaged_hal
 lib_halcmd=-lmkhhal_command

@@ -171,7 +171,7 @@ fi
 
 MODUTILS_DEPENDS=kmod
 PYTHON_PACKAGING_DEPENDS=dh-python
-PYTHON_PACKAGING=dh_python
+PYTHON_PACKAGING=dh_python3
 PYTHON_GST=python3-gst-1.0,gstreamer1.0-plugins-base
 TCLTK_VERSION=8.6
 PYTHON_IMAGING=python3-pil
@@ -183,7 +183,7 @@ STANDARDS_VERSION="3.9.3"
 case $DISTRIB_NAME in
     Ubuntu-21.*|Debian-11|Debian-11.*|Debian-testing|Debian-unstable)
         LIBREADLINE_DEV=libeditreadline-dev
-        COMPAT=""
+        COMPAT="13"
         DEBHELPER="debhelper-compat (= 13)"
         ;;
     Ubuntu-20.*)

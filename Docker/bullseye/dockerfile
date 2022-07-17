@@ -1,0 +1,25 @@
+ARG ARCH=
+FROM ${ARCH}debian:bullseye
+
+RUN apt update && \
+    apt upgrade -y
+
+RUN apt install build-essential fakeroot devscripts equivs sudo curl python lsb-release apt-cudf -y
+
+RUN addgroup machinekit --gid 1000
+
+RUN useradd -m -u 1000 -g 1000 -o -s /bin/bash machinekit
+
+RUN echo "machinekit ALL = (ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+RUN apt install debian-keyring debian-archive-keyring apt-transport-https -y
+
+USER machinekit
+
+RUN curl -1sLf \
+  'https://dl.cloudsmith.io/public/machinekit/machinekit/setup.deb.sh' \
+  | sudo -E bash
+
+RUN curl -1sLf \
+  'https://dl.cloudsmith.io/public/machinekit/machinekit-hal/setup.deb.sh' \
+  | sudo -E bash

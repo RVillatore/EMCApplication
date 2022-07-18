@@ -3,17 +3,17 @@ Conflicts: linuxcnc-sim, @OTHER_MAIN_PACKAGE_NAME@ @OTHER_CONFLICTING_PACKAGES@
 Architecture: any
 Recommends: linuxcnc-doc-en | linuxcnc-doc,
     python3-pyqt5,    
-	python3-pyqt5.qsci,    
-	python3-pyqt5.qtsvg,    
-	python3-pyqt5.qtopengl,    
-	python3-opencv,
-	python3-dbus,python3-espeak,    
-	python3-dbus.mainloop.pyqt5,    
-	python3-pyqt5.qtwebkit, 
-	espeak-ng,    
-	pyqt5-dev-tools,  
-	gstreamer1.0-tools,espeak,    
-	sound-theme-freedesktop,
+    python3-pyqt5.qsci,    
+    python3-pyqt5.qtsvg,    
+    python3-pyqt5.qtopengl,    
+    python3-opencv,
+    python3-dbus,python3-espeak,    
+    python3-dbus.mainloop.pyqt5,    
+    python3-pyqt5.qtwebkit, 
+    espeak-ng,    
+    pyqt5-dev-tools,  
+    gstreamer1.0-tools,espeak,    
+    sound-theme-freedesktop,
     @EXTRA_RECOMMENDS@
 Depends:
     ${misc:Depends},
@@ -40,7 +40,6 @@ Depends:
     udev,				   
     @PYTHON_IMAGING@,
     @PYTHON_IMAGING_TK@,
-	@QTVCP_DEPENDS@
     gir1.2-vte-2.91,
     @PYTHON_GST@  
 Description: @MAIN_PACKAGE_DESCRIPTION_TEXT@

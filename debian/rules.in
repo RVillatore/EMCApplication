@@ -16,8 +16,6 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
-DEB_BUILD_OPTIONS='parallel=8'
-
 kernel_version = @KERNEL_VERSION@
 enable_build_documentation = @ENABLE_BUILD_DOCUMENTATION@
 configure_realtime_arg = @CONFIGURE_REALTIME_ARG@

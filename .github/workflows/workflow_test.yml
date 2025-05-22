@@ -27,14 +27,17 @@ jobs:
         uses: docker/setup-buildx-action@v3
         with:
           platforms: linux/arm/v7
+          install: true
+          driver-opts: |
+            image=moby/buildkit:master
+            network=host
 
-      - name: Initialize cache with valid manifest
+      - name: Initialize cache properly
         run: |
           mkdir -p /tmp/.buildx-cache
-          # Create properly formatted JSON with valid timestamp
+          # Create valid cache manifest with explicit tag
           if [ ! -f /tmp/.buildx-cache/index.json ]; then
-            TIMESTAMP=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
-            echo '{"v":"0","created":"'"${TIMESTAMP}"'","tags":["latest"]}' > /tmp/.buildx-cache/index.json
+            printf '{"v":"0","created":"%s","tags":["latest"]}\n' "$(date -u +'%Y-%m-%dT%H:%M:%SZ')" > /tmp/.buildx-cache/index.json
           fi
 
       - name: Build Docker image
@@ -45,25 +48,24 @@ jobs:
             --build-arg BASE_IMAGE=arm32v7/debian:bullseye \
             --tag emc-app:${{ inputs.build_type || 'release' }} \
             --cache-from type=local,src=/tmp/.buildx-cache,tag=latest \
-            --cache-to type=local,dest=/tmp/.buildx-cache-new,tag=latest,mode=max,compression=zstd \
+            --cache-to type=local,dest=/tmp/.buildx-cache-new,tag=latest,mode=max \
             --load \
             --progress plain \
             .
 
-      - name: Rotate and validate cache
+      - name: Finalize cache
         run: |
-          # Remove old cache
-          rm -rf /tmp/.buildx-cache/*
+          # Remove old cache completely
+          rm -rf /tmp/.buildx-cache
           
-          # Move new cache and ensure manifest exists
+          # Create new cache directory structure
           mkdir -p /tmp/.buildx-cache
-          [ -d /tmp/.buildx-cache-new ] && mv /tmp/.buildx-cache-new/* /tmp/.buildx-cache/ || true
           
-          # Recreate manifest if missing
-          if [ ! -f /tmp/.buildx-cache/index.json ]; then
-            TIMESTAMP=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
-            echo '{"v":"0","created":"'"${TIMESTAMP}"'","tags":["latest"]}' > /tmp/.buildx-cache/index.json
-          fi
+          # Copy new cache contents (including hidden files)
+          [ -d /tmp/.buildx-cache-new ] && rsync -a /tmp/.buildx-cache-new/ /tmp/.buildx-cache/ || true
+          
+          # Ensure valid manifest exists
+          printf '{"v":"0","created":"%s","tags":["latest"]}\n' "$(date -u +'%Y-%m-%dT%H:%M:%SZ')" > /tmp/.buildx-cache/index.json
 
       - name: Execute package build
         run: |

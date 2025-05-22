@@ -3,7 +3,7 @@ FROM ${BASE_IMAGE}
 
 COPY --from=multiarch/qemu-user-static /usr/bin/qemu-arm-static /usr/bin/
 
-# System setup with repository dependencies
+# Base package installation
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
@@ -25,14 +25,16 @@ RUN apt-get update && \
         software-properties-common \
         gnupg2 && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    mkdir -p /machinekit/emca && \
-    chmod 1777 /tmp && \
-    # Add Machinekit repository key
-    curl -fsSL https://deb.machinekit.io/apt.key | gpg --dearmor -o /etc/apt/trusted.gpg.d/machinekit.gpg && \
-    echo "deb [arch=armhf] https://deb.machinekit.io/debian bullseye main" > /etc/apt/sources.list.d/machinekit.list
+    rm -rf /var/lib/apt/lists/*
 
-# Configure machinekit user
+# Repository setup with retries
+RUN mkdir -p /machinekit/emca && \
+    chmod 1777 /tmp && \
+    { curl -fsSL https://deb.machinekit.io/apt.key | gpg --batch --dearmor -o /etc/apt/trusted.gpg.d/machinekit.gpg || \
+      curl -fsSL https://deb.machinekit.io/apt.key | gpg --batch --dearmor -o /etc/apt/trusted.gpg.d/machinekit.gpg; } && \
+    echo "deb [arch=armhf] https://dl.cloudsmith.io/public/machinekit/machinekit/debian/ubuntu bullseye main" > /etc/apt/sources.list.d/machinekit.list
+
+# User configuration
 RUN groupadd -g 1000 machinekit && \
     useradd -m -u 1000 -g 1000 -d /machinekit machinekit && \
     echo "machinekit ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \

@@ -66,16 +66,16 @@ jobs:
 
       - name: Create container and copy source
         run: |
-          docker create --name temp-container --platform linux/${{ github.event.inputs.target_arch || 'arm/v7' }} emc-app:${{ github.event.inputs.build_type || 'release' }} /bin/bash
-          docker start temp-container
-
+          #docker create --name temp-container --platform linux/${{ github.event.inputs.target_arch || 'arm/v7' }} emc-app:${{ github.event.inputs.build_type || 'release' }} /bin/bash
+          #docker start temp-container
+          docker run --rm --platform linux/arm/v7 emc-app:${{ github.event.inputs.build_type || 'release' }} tail -f /dev/null
           # Copy the entire repo to /machinekit/emca inside the container
           docker exec temp-container mkdir -p /machinekit/emca
           docker cp . temp-container:/machinekit/emca
 
       - name: Run build inside container
         run: |
-          docker start temp-container
+          #docker start temp-container
           docker exec -u machinekit temp-container bash -c "curl -1sLf 'https://dl.cloudsmith.io/public/machinekit/machinekit/cfg/setup/bash.deb.sh' | sudo -E bash"
           docker exec -u machinekit temp-container bash -c "curl -1sLf 'https://dl.cloudsmith.io/public/machinekit/machinekit-hal/cfg/setup/bash.deb.sh' | sudo -E bash"
 

@@ -1,3 +1,5 @@
+FROM multiarch/qemu-user-static as qemu
+
 ARG ARCH=
 FROM ${ARCH}debian:bullseye
 

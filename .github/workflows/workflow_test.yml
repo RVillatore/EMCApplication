@@ -18,7 +18,7 @@ jobs:
         with:
           ref: machinekit-hal-last-update
 
-      - name: Set up QEMU for ARMv7
+      - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
         with:
           platforms: arm
@@ -28,11 +28,13 @@ jobs:
         with:
           platforms: linux/arm/v7
 
-      - name: Initialize build cache
+      - name: Initialize cache with valid manifest
         run: |
           mkdir -p /tmp/.buildx-cache
+          # Create properly formatted JSON with valid timestamp
           if [ ! -f /tmp/.buildx-cache/index.json ]; then
-            echo "{\"v\":\"0\",\"created\":\"$(date -u +'%Y-%m-%dT%H:%M:%SZ')\",\"tags\":[\"latest\"]}" > /tmp/.buildx-cache/index.json
+            TIMESTAMP=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+            echo '{"v":"0","created":"'"${TIMESTAMP}"'","tags":["latest"]}' > /tmp/.buildx-cache/index.json
           fi
 
       - name: Build Docker image
@@ -43,20 +45,27 @@ jobs:
             --build-arg BASE_IMAGE=arm32v7/debian:bullseye \
             --tag emc-app:${{ inputs.build_type || 'release' }} \
             --cache-from type=local,src=/tmp/.buildx-cache,tag=latest \
-            --cache-to type=local,dest=/tmp/.buildx-cache-new,tag=latest,mode=max \
+            --cache-to type=local,dest=/tmp/.buildx-cache-new,tag=latest,mode=max,compression=zstd \
             --load \
             --progress plain \
             .
 
-      - name: Rotate build cache
+      - name: Rotate and validate cache
         run: |
+          # Remove old cache
           rm -rf /tmp/.buildx-cache/*
-          mv /tmp/.buildx-cache-new/* /tmp/.buildx-cache/ || true
+          
+          # Move new cache and ensure manifest exists
+          mkdir -p /tmp/.buildx-cache
+          [ -d /tmp/.buildx-cache-new ] && mv /tmp/.buildx-cache-new/* /tmp/.buildx-cache/ || true
+          
+          # Recreate manifest if missing
+          if [ ! -f /tmp/.buildx-cache/index.json ]; then
+            TIMESTAMP=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+            echo '{"v":"0","created":"'"${TIMESTAMP}"'","tags":["latest"]}' > /tmp/.buildx-cache/index.json
+          fi
 
-      - name: Create output directory
-        run: mkdir -p output
-
-      - name: Execute package build in container
+      - name: Execute package build
         run: |
           docker run --platform linux/arm/v7 \
             -v ${{ github.workspace }}:/machinekit/emca \
@@ -65,12 +74,12 @@ jobs:
             emc-app:${{ inputs.build_type || 'release' }} \
             /bin/bash scripts/BuildPKG.sh
 
-      - name: Extract built packages
+      - name: Extract artifacts
         run: |
           docker cp temp-container:/machinekit/emca ./
           docker rm temp-container
 
-      - name: Upload artifacts
+      - name: Upload packages
         uses: actions/upload-artifact@v4
         with:
           name: emc-${{ inputs.build_type || 'release' }}-armv7-debs

@@ -68,22 +68,13 @@ jobs:
         run: |
           #docker create --name temp-container --platform linux/${{ github.event.inputs.target_arch || 'arm/v7' }} emc-app:${{ github.event.inputs.build_type || 'release' }} /bin/bash
           #docker start temp-container
-          docker run --rm --platform linux/arm/v7 emc-app:${{ github.event.inputs.build_type || 'release' }} tail -f /dev/null
-          # Copy the entire repo to /machinekit/emca inside the container
-          docker exec temp-container mkdir -p /machinekit/emca
-          docker cp . temp-container:/machinekit/emca
-
-      - name: Run build inside container
-        run: |
-          #docker start temp-container
-          docker exec -u machinekit temp-container bash -c "curl -1sLf 'https://dl.cloudsmith.io/public/machinekit/machinekit/cfg/setup/bash.deb.sh' | sudo -E bash"
-          docker exec -u machinekit temp-container bash -c "curl -1sLf 'https://dl.cloudsmith.io/public/machinekit/machinekit-hal/cfg/setup/bash.deb.sh' | sudo -E bash"
-
-          docker exec -u machinekit temp-container bash -c "cd /machinekit/emca && ./debian/configure machinekit-hal=0.5.21099-1.git2c2ff0e51~bullseye no-docs"
-          docker exec -u machinekit temp-container bash -c "cd /machinekit/emca && mk-build-deps --remove --root-cmd sudo --tool 'apt-cudf-get --solver aspcud -o APT::Get::Assume-Yes=1 -o Debug::pkgProblemResolver=0 -o APT::Install-Recommends=0' debian/control"
-          docker exec -u machinekit temp-container bash -c "cd /machinekit/emca && sudo apt install ./*.deb -y"
-          docker exec -u machinekit temp-container bash -c "cd /machinekit/emca && dpkg-buildpackage -us -uc"
-          docker exec -u machinekit temp-container bash -c "cd /machinekit && cp *.deb /machinekit/emca || true"
+          #docker run --rm --platform linux/arm/v7 emc-app:${{ github.event.inputs.build_type || 'release' }} tail -f /dev/null
+          docker run --platform linux/${{ github.event.inputs.target_arch || 'arm/v7' }} \
+            -v ${{ github.workspace }}:/machinekit/emca \
+            --workdir /machinekit/emca \
+            --name temp-container \
+            emc-app:${{ github.event.inputs.build_type || 'release' }} \
+            /bin/bash scripts/BuildPKG.sh
 
       - name: Copy built .deb files
         run: |

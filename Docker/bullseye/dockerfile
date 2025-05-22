@@ -1,4 +1,4 @@
-FROM --platform=TARGETPLATFORM multiarch/qemu-user-static AS qemu
+FROM --platform=${TARGETPLATFORM} multiarch/qemu-user-static AS qemu
 
 FROM ${TARGETPLATFORM}debian:bullseye
 COPY --from=qemu /usr/bin/qemu-arm-static /usr/bin/

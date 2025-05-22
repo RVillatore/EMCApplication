@@ -1,0 +1,72 @@
+name: Build ARM .deb Packages
+
+on:
+  push:
+    branches:
+      - machinekit-hal-last-update
+
+  workflow_dispatch:
+    inputs:
+      build_type:
+        description: 'Build type (e.g., debug or release)'
+        required: false
+        default: 'release'
+      target_arch:
+        description: 'Target architecture (e.g., arm/v7, arm64, amd64)'
+        required: false
+        default: 'arm/v7'
+
+jobs:
+  build-arm:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: machinekit-hal-last-update
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: ${{ github.event.inputs.target_arch || 'arm' }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Print selected inputs
+        run: |
+          echo "Build type: ${{ github.event.inputs.build_type || 'release' }}"
+          echo "Target architecture: linux/${{ github.event.inputs.target_arch || 'arm/v7' }}"
+
+      - name: Build Docker image
+        run: |
+          docker buildx build \
+            --platform linux/${{ github.event.inputs.target_arch || 'arm/v7' }} \
+            --file Docker/bullseye/dockerfile \
+            --tag emc-app:${{ github.event.inputs.build_type || 'release' }} \
+            --load .
+
+      - name: Create output directory
+        run: mkdir -p output
+
+      - name: List files in the workspace
+        run: ls -R /github/workspace
+
+      - name: Run container and copy .deb files from the repo root
+        run: |
+          # Create a container from the built image
+          docker create --name temp-container emc-app:${{ github.event.inputs.build_type || 'release' }} \
+            /bin/bash -c "cd /github/workspace && ./BuildPKG.sh"
+
+          # Copy all .deb files from the root folder inside the container
+          docker cp temp-container:/github/workspace/*.deb ./output
+
+          # Remove the container to ensure a clean state next time
+          docker rm temp-container
+
+      - name: Upload .deb artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: emc-${{ github.event.inputs.build_type || 'release' }}-debs
+          path: ./output/**/*.deb

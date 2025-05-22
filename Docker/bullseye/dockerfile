@@ -16,8 +16,8 @@ RUN echo "machinekit ALL = (ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 RUN apt install debian-keyring debian-archive-keyring apt-transport-https -y
 
-USER machinekit
-
 RUN gosu machinekit bash -c "curl -1sLf 'https://dl.cloudsmith.io/public/machinekit/machinekit/setup.deb.sh' | bash"
 
 RUN gosu machinekit bash -c "curl -1sLf 'https://dl.cloudsmith.io/public/machinekit/machinekit-hal/setup.deb.sh' | bash"
+
+USER machinekit

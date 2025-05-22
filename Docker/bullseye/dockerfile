@@ -8,8 +8,8 @@ FROM --platform=${DOCKER_PLATFORM} multiarch/qemu-user-static:latest AS qemu
 # Stage 1: Base image with dependencies
 FROM --platform=${DOCKER_PLATFORM} ${BASE_IMAGE} AS base
 
-# Copy QEMU binary with platform specification
-COPY --from=qemu --chmod=755 /usr/bin/qemu-arm-static /usr/bin/
+# Copy QEMU binary with proper permissions
+COPY --from=qemu /usr/bin/qemu-arm-static /usr/bin/
 
 # Install system dependencies
 RUN apt-get update && \
@@ -48,10 +48,10 @@ RUN groupadd -g 1000 machinekit && \
 # Stage 3: Final image
 FROM userconfig
 
-# Configure repositories with verified URLs
-RUN sudo curl -fsSL -o /etc/apt/trusted.gpg.d/machinekit.gpg \
-    https://dl.cloudsmith.io/public/machinekit/machinekit/cfg/gpg/gpg.key && \
-    echo "deb [arch=armhf] https://dl.cloudsmith.io/public/machinekit/machinekit/deb/any-distro any-version main" | \
+# Configure repositories with verified configuration
+RUN sudo curl -fsSL https://dl.cloudsmith.io/public/machinekit/machinekit/gpg.key | \
+    sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/machinekit.gpg && \
+    echo "deb [arch=armhf] https://dl.cloudsmith.io/public/machinekit/machinekit/deb/debian bullseye main" | \
     sudo tee /etc/apt/sources.list.d/machinekit.list && \
     sudo apt-get update
 

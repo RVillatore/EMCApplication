@@ -44,7 +44,7 @@ jobs:
             --workdir /machinekit/emca \
             --name temp-container \
             emc-app:${{ github.event.inputs.build_type || 'release' }} \
-            /bin/bash scripts/BuildPKG.sh
+            /bin/bash BuildPKG.sh
 
       - name: Extract artifacts
         run: |

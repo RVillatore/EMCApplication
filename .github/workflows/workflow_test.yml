@@ -6,7 +6,7 @@ on:
       build_type:
         description: 'Build type (debug/release)'
         required: false
-        default: 'debug'
+        default: 'release'
 
 jobs:
   build-armv7:
@@ -45,11 +45,7 @@ jobs:
             --workdir /machinekit/emca \
             --name temp-container \
             emc-app:${{ github.event.inputs.build_type || 'release' }} \
-            /bin/bash -c \
-            "sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key 43D640E7 && \
-             sudo add-apt-repository 'deb https://deb.machinekit.io/debian bullseye main' && \
-             sudo apt-get update && \
-             /bin/bash /machinekit/emca/BuildPKG.sh"
+            /bin/bash /machinekit/emca/BuildPKG.sh
 
       - name: Extract artifacts
         run: |

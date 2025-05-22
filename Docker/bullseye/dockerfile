@@ -1,23 +1,45 @@
+# First stage: QEMU setup
 FROM multiarch/qemu-user-static AS qemu
 
+# Second stage: Main build
 ARG BASE_IMAGE=debian:bullseye
 FROM ${BASE_IMAGE}
 
-COPY --from=qemu /usr/bin/qemu-arm-static /usr/bin/
+# Architecture arguments
+ARG TARGETARCH
+ARG TARGETVARIANT
 
-RUN apt update && \
-    apt upgrade -y
+# Copy appropriate QEMU binary dynamically
+COPY --from=qemu /usr/bin/qemu-${TARGETARCH}-static${TARGETVARIANT:+-${TARGETVARIANT}} /usr/bin/
 
-RUN apt install -y build-essential fakeroot devscripts equivs sudo curl python lsb-release apt-cudf
+# System setup and package installation
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y --no-install-recommends \
+        build-essential \
+        fakeroot \
+        devscripts \
+        equivs \
+        sudo \
+        curl \
+        python3 \
+        lsb-release \
+        apt-cudf \
+        gosu \
+        debian-keyring \
+        debian-archive-keyring \
+        apt-transport-https && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN apt install -y gosu
-
-RUN addgroup machinekit --gid 1000
-
-RUN useradd -m -u 1000 -g 1000 -o -s /bin/bash machinekit
-
-RUN echo "machinekit ALL = (ALL) NOPASSWD: ALL" >> /etc/sudoers
-
-RUN apt install -y debian-keyring debian-archive-keyring apt-transport-https
+# User configuration
+RUN addgroup --gid 1000 machinekit && \
+    adduser --uid 1000 --gid 1000 \
+        --disabled-password \
+        --gecos "" \
+        --shell /bin/bash \
+        machinekit && \
+    echo "machinekit ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 USER machinekit
+WORKDIR /machinekit/emca

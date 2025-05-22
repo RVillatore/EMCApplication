@@ -1,3 +1,5 @@
+name: Build ARM .deb Packages
+
 on:
   workflow_dispatch:
     inputs:
@@ -13,9 +15,10 @@ on:
 jobs:
   build-arm:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: machinekit-hal-last-update
 
@@ -30,4 +33,52 @@ jobs:
       - name: Print selected inputs
         run: |
           echo "Build type: ${{ github.event.inputs.build_type || 'release' }}"
-          echo "Target architecture: linux/${{ github.event.inputs.target_arch || 'arm/v7' }}"    
+          echo "Target architecture: linux/${{ github.event.inputs.target_arch || 'arm/v7' }}"
+		  
+	  - name: Cache Docker layers
+        uses: actions/cache@v4
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+
+      - name: Build Docker image
+        run: |
+          docker buildx create --use
+		  docker buildx build \
+            --platform linux/${{ github.event.inputs.target_arch || 'arm/v7' }} \
+            --file Docker/bullseye/dockerfile \
+            --tag emc-app:${{ github.event.inputs.build_type || 'release' }} \
+			--cache-from type=local,src=/tmp/.buildx-cache \
+            --cache-to type=local,dest=/tmp/.buildx-cache-new \
+            --load .
+	  
+	  - name: Move cache for next build
+        run: |
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+
+      - name: Create output directory
+        run: mkdir -p output
+
+      - name: List files in the workspace
+        run: ls -R /github/workspace
+
+      - name: Run container and copy .deb files from the repo root
+        run: |
+          # Create a container from the built image
+          docker create --name temp-container emc-app:${{ github.event.inputs.build_type || 'release' }} \
+            /bin/bash -c "cd /github/workspace && ./BuildPKG.sh"
+
+          # Copy all .deb files from the root folder inside the container
+          docker cp temp-container:/github/workspace/*.deb ./output
+
+          # Remove the container to ensure a clean state next time
+          docker rm temp-container
+
+      - name: Upload .deb artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: emc-${{ github.event.inputs.build_type || 'release' }}-debs
+          path: ./output/**/*.deb

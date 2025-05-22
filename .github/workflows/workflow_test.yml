@@ -66,7 +66,7 @@ jobs:
 
       - name: Create container and copy source
         run: |
-          docker create --name temp-container emc-app:${{ github.event.inputs.build_type || 'release' }} /bin/bash
+          docker create --name temp-container --platform linux/${{ github.event.inputs.target_arch || 'arm/v7' }} emc-app:${{ github.event.inputs.build_type || 'release' }} /bin/bash
           docker start temp-container
 
           # Copy the entire repo to /machinekit/emca inside the container

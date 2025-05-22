@@ -1,4 +1,4 @@
-name: Build ARM .deb Packages
+name: Build ARM .deb Packages test
 
 on:
   workflow_dispatch:

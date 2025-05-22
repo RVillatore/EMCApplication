@@ -6,7 +6,7 @@ on:
       build_type:
         description: 'Build type (debug/release)'
         required: false
-        default: 'release'
+        default: 'debug'
 
 jobs:
   build-armv7:
@@ -25,6 +25,9 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+        with:
+          driver-opts: |
+            network=host
 
       - name: Build Docker image
         run: |
@@ -44,6 +47,7 @@ jobs:
             -e HOME=/machinekit \
             --workdir /machinekit/emca \
             --name temp-container \
+            --network host \
             emc-app:${{ github.event.inputs.build_type || 'release' }} \
             /bin/bash /machinekit/emca/BuildPKG.sh
 

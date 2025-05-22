@@ -18,8 +18,8 @@ USER machinekit
 
 RUN curl -1sLf \
   'https://dl.cloudsmith.io/public/machinekit/machinekit/setup.deb.sh' \
-  | sudo -E bash
+  | -E bash
 
 RUN curl -1sLf \
   'https://dl.cloudsmith.io/public/machinekit/machinekit-hal/setup.deb.sh' \
-  | sudo -E bash
+  | -E bash

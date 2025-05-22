@@ -18,8 +18,8 @@ USER machinekit
 
 RUN curl -1sLf \
   'https://dl.cloudsmith.io/public/machinekit/machinekit/setup.deb.sh' \
-  | -E bash
+  | bash
 
 RUN curl -1sLf \
   'https://dl.cloudsmith.io/public/machinekit/machinekit-hal/setup.deb.sh' \
-  | -E bash
+  | bash

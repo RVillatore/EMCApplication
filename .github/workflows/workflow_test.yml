@@ -75,6 +75,7 @@ jobs:
 
       - name: Run build inside container
         run: |
+          docker start temp-container
           docker exec -u machinekit temp-container bash -c "curl -1sLf 'https://dl.cloudsmith.io/public/machinekit/machinekit/cfg/setup/bash.deb.sh' | sudo -E bash"
           docker exec -u machinekit temp-container bash -c "curl -1sLf 'https://dl.cloudsmith.io/public/machinekit/machinekit-hal/cfg/setup/bash.deb.sh' | sudo -E bash"
 

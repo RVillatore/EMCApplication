@@ -34,8 +34,8 @@ jobs:
         run: |
           echo "Build type: ${{ github.event.inputs.build_type || 'release' }}"
           echo "Target architecture: linux/${{ github.event.inputs.target_arch || 'arm/v7' }}"
-		  
-	  - name: Cache Docker layers
+
+      - name: Cache Docker layers
         uses: actions/cache@v4
         with:
           path: /tmp/.buildx-cache
@@ -46,15 +46,15 @@ jobs:
       - name: Build Docker image
         run: |
           docker buildx create --use
-		  docker buildx build \
+          docker buildx build \
             --platform linux/${{ github.event.inputs.target_arch || 'arm/v7' }} \
             --file Docker/bullseye/dockerfile \
             --tag emc-app:${{ github.event.inputs.build_type || 'release' }} \
-			--cache-from type=local,src=/tmp/.buildx-cache \
+            --cache-from type=local,src=/tmp/.buildx-cache \
             --cache-to type=local,dest=/tmp/.buildx-cache-new \
             --load .
-	  
-	  - name: Move cache for next build
+
+      - name: Move cache for next build
         run: |
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache

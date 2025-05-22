@@ -2,13 +2,13 @@
 ARG DOCKER_PLATFORM=linux/arm/v7
 ARG BASE_IMAGE=arm32v7/debian:bullseye
 
-# Stage 0: QEMU setup with explicit platform
+# Stage 0: QEMU setup with explicit ARMv7 platform
 FROM --platform=${DOCKER_PLATFORM} multiarch/qemu-user-static:latest AS qemu
 
 # Stage 1: Base image with dependencies
 FROM --platform=${DOCKER_PLATFORM} ${BASE_IMAGE} AS base
 
-# Copy QEMU binary
+# Copy QEMU binary from dedicated stage
 COPY --from=qemu /usr/bin/qemu-arm-static /usr/bin/
 
 # Install system dependencies
@@ -48,10 +48,10 @@ RUN groupadd -g 1000 machinekit && \
 # Stage 3: Final image
 FROM userconfig
 
-# Configure repositories with valid URLs
-RUN sudo curl -fsSL -o /etc/apt/trusted.gpg.d/machinekit.gpg \
-    https://dl.cloudsmith.io/public/machinekit/machinekit/gpg.key && \
-    echo "deb [arch=armhf] https://dl.cloudsmith.io/public/machinekit/machinekit/deb/debian any-version main" | \
+# Configure repositories with proper key format
+RUN sudo curl -fsSL -o /etc/apt/trusted.gpg.d/machinekit.asc \
+    https://dl.cloudsmith.io/public/machinekit/machinekit/gpg.key.asc && \
+    echo "deb [arch=armhf] https://dl.cloudsmith.io/public/machinekit/machinekit/deb/debian bullseye main" | \
     sudo tee /etc/apt/sources.list.d/machinekit.list && \
     sudo apt-get update
 

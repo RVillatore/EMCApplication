@@ -1,10 +1,6 @@
 name: Build ARM .deb Packages
 
 on:
-  push:
-    branches:
-      - machinekit-hal-last-update
-
   workflow_dispatch:
     inputs:
       build_type:

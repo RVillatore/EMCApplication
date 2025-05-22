@@ -1,6 +1,8 @@
-FROM --platform=${TARGETPLATFORM} multiarch/qemu-user-static AS qemu
+FROM multiarch/qemu-user-static AS qemu
 
-FROM ${TARGETPLATFORM}debian:bullseye
+ARG BASE_IMAGE=debian:bullseye
+FROM ${BASE_IMAGE}
+
 COPY --from=qemu /usr/bin/qemu-arm-static /usr/bin/
 
 RUN apt update && \

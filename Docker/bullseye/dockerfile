@@ -1,4 +1,4 @@
-FROM multiarch/qemu-user-static as qemu
+FROM --platform=linux/amd64 multiarch/qemu-user-static AS qemu
 
 ARG ARCH
 FROM ${ARCH}debian:bullseye

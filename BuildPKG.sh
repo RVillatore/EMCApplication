@@ -1,13 +1,11 @@
 #!/bin/bash
-set -e
+set -ex
 
-# Setup environment with source repositories
+# Setup environment
 cd /machinekit/emca
 
-# Update package lists
-sudo apt-get update
-
 # Install build dependencies
+sudo apt-get update
 sudo apt-get build-dep -y .
 
 # Build steps

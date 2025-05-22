@@ -1,18 +1,18 @@
 # First stage: QEMU setup
 FROM multiarch/qemu-user-static AS qemu
 
-# Second stage: Main build
-ARG BASE_IMAGE=debian:bullseye
+# Base image configuration
+ARG BASE_IMAGE=arm32v7/debian:bullseye
 FROM ${BASE_IMAGE}
 
 # Architecture arguments
-ARG TARGETARCH
-ARG TARGETVARIANT
+ARG TARGETARCH=arm
+ARG TARGETVARIANT=v7
 
-# Copy appropriate QEMU binary dynamically
-COPY --from=qemu /usr/bin/qemu-${TARGETARCH}-static${TARGETVARIANT:+-${TARGETVARIANT}} /usr/bin/
+# Copy appropriate QEMU binary
+COPY --from=qemu /usr/bin/qemu-${TARGETARCH}-static /usr/bin/
 
-# System setup and package installation
+# System setup
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \

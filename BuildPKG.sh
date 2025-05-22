@@ -6,7 +6,7 @@ cd /machinekit/emca
 
 # Install build dependencies
 sudo apt-get update
-sudo apt-get build-dep -y .
+sudo apt-get build-dep -y
 
 # Build steps
 export PKG_CONFIG_PATH="$PWD"

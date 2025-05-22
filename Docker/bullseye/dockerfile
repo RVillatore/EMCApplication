@@ -1,8 +1,12 @@
+# Stage 0: QEMU setup for ARMv7
+FROM --platform=linux/arm/v7 multiarch/qemu-user-static as qemu
+
 # Stage 1: Base image with dependencies
 ARG BASE_IMAGE=arm32v7/debian:bullseye
 FROM --platform=linux/arm/v7 ${BASE_IMAGE} as base
 
-COPY --from=multiarch/qemu-user-static --platform=linux/arm/v7 /usr/bin/qemu-arm-static /usr/bin/
+# Copy QEMU binary from dedicated stage
+COPY --from=qemu /usr/bin/qemu-arm-static /usr/bin/
 
 # Install system dependencies
 RUN apt-get update && \
@@ -38,24 +42,16 @@ RUN groupadd -g 1000 machinekit && \
     echo "machinekit ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
     chown -R machinekit:machinekit /machinekit
 
-# Stage 3: Repository setup
+# Stage 3: Final image
 FROM userconfig
 
-# Add Cloudsmith repositories with modern key management
+# Add Cloudsmith repositories
 RUN sudo curl -fsSL -o /etc/apt/trusted.gpg.d/machinekit.gpg \
     https://dl.cloudsmith.io/public/machinekit/machinekit/gpg.70528471A8369D24.key && \
-    sudo curl -fsSL -o /etc/apt/trusted.gpg.d/machinekit-hal.gpg \
-    https://dl.cloudsmith.io/public/machinekit/machinekit-hal/gpg.70528471A8369D24.key && \
-    echo "deb [arch=armhf] https://dl.cloudsmith.io/public/machinekit/machinekit/deb/debian bullseye main" | sudo tee /etc/apt/sources.list.d/machinekit.list && \
-    echo "deb-src https://dl.cloudsmith.io/public/machinekit/machinekit/deb/debian bullseye main" | sudo tee -a /etc/apt/sources.list.d/machinekit.list && \
-    echo "deb [arch=armhf] https://dl.cloudsmith.io/public/machinekit/machinekit-hal/deb/debian bullseye main" | sudo tee /etc/apt/sources.list.d/machinekit-hal.list && \
-    echo "deb-src https://dl.cloudsmith.io/public/machinekit/machinekit-hal/deb/debian bullseye main" | sudo tee -a /etc/apt/sources.list.d/machinekit-hal.list
+    echo "deb [arch=armhf] https://dl.cloudsmith.io/public/machinekit/machinekit/deb/debian bullseye main" | \
+    sudo tee /etc/apt/sources.list.d/machinekit.list
 
-# Final application setup with proper permissions
 USER machinekit
 WORKDIR /machinekit/emca
 
-COPY --chown=machinekit:machinekit . /machinekit/emca/
-
-RUN sudo chmod -R 755 /machinekit/emca && \
-    sudo find /machinekit/emca -type d -exec chmod 755 {} \;
+COPY --chown=machinekit:machinekit . .

@@ -29,6 +29,8 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+        with:
+          platforms: ${{ github.event.inputs.target_arch || 'arm/v7' }}
 
       - name: Print selected inputs
         run: |

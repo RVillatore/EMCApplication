@@ -33,6 +33,9 @@ jobs:
           context: .
           file: Docker/bullseye/dockerfile
           platforms: linux/arm/v7
+          build-args: |
+            DOCKER_PLATFORM=linux/arm/v7
+            BASE_IMAGE=arm32v7/debian:bullseye
           load: true
           tags: emc-app:${{ github.event.inputs.build_type || 'release' }}
 

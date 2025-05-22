@@ -21,28 +21,39 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: machinekit-hal-last-update
-          fetch-depth: 0  # Improves cache efficiency for R1 model
 
-      - name: Configure QEMU for R1 architecture
+      - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
         with:
-          platforms: ${{ contains(github.event.inputs.target_arch, 'arm') && 'arm' || 'amd64' }}
+          platforms: ${{ github.event.inputs.target_arch || 'arm' }}
 
-      - name: Initialize Buildx with enhanced caching
+      - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
         with:
           platforms: ${{ github.event.inputs.target_arch || 'arm/v7' }}
-          install: true
-          driver-opts: |
-            image=moby/buildkit:master
-            network=host
 
-      - name: Optimized cache handling
+      - name: Print selected inputs
+        run: |
+          echo "Build type: ${{ github.event.inputs.build_type || 'release' }}"
+          echo "Target architecture: linux/${{ github.event.inputs.target_arch || 'arm/v7' }}"
+
+      - name: Initialize cache directory
         run: |
           mkdir -p /tmp/.buildx-cache
-          [ -f /tmp/.buildx-cache/index.json ] || echo '{}' > /tmp/.buildx-cache/index.json
+          # Create valid cache manifest if missing
+          if [ ! -f /tmp/.buildx-cache/index.json ]; then
+            echo '{"v":"0","created":"$(date -u +"%Y-%m-%dT%H:%M:%SZ")","tags":["latest"]}' > /tmp/.buildx-cache/index.json
+          fi
 
-      - name: Smart architecture mapping
+      - name: Cache Docker layers
+        uses: actions/cache@v4
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+
+      - name: Determine base image
         id: arch-map
         run: |
           case "${{ github.event.inputs.target_arch || 'arm/v7' }}" in
@@ -52,17 +63,43 @@ jobs:
             *)          echo "base_image=debian:bullseye" >> $GITHUB_OUTPUT ;;
           esac
 
-      - name: Build Docker image with R1 optimizations
+      - name: Build Docker image
         run: |
           docker buildx build \
             --platform linux/${{ github.event.inputs.target_arch || 'arm/v7' }} \
             --file Docker/bullseye/dockerfile \
             --build-arg BASE_IMAGE=${{ steps.arch-map.outputs.base_image }} \
             --tag emc-app:${{ github.event.inputs.build_type || 'release' }} \
-            --cache-from type=local,src=/tmp/.buildx-cache \
-            --cache-to type=local,dest=/tmp/.buildx-cache-new,mode=max \
+            --cache-from type=local,src=/tmp/.buildx-cache,tag=latest \
+            --cache-to type=local,dest=/tmp/.buildx-cache-new,tag=latest,mode=max \
             --load \
             --progress plain \
             .
 
-      # Rest of your original steps remain unchanged...
+      - name: Rotate build cache
+        run: |
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+
+      - name: Create output directory
+        run: mkdir -p output
+
+      - name: Execute package build
+        run: |
+          docker run --platform linux/${{ github.event.inputs.target_arch || 'arm/v7' }} \
+            -v ${{ github.workspace }}:/machinekit/emca \
+            --workdir /machinekit/emca \
+            --name temp-container \
+            emc-app:${{ github.event.inputs.build_type || 'release' }} \
+            /bin/bash scripts/BuildPKG.sh
+
+      - name: Extract built packages
+        run: |
+          docker cp temp-container:/machinekit/emca ./
+          docker rm temp-container
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: emc-${{ github.event.inputs.build_type || 'release' }}-debs
+          path: ./emca/*.deb

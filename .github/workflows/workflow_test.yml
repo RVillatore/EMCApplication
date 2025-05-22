@@ -13,10 +13,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          ref: machinekit-hal-last-update
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -29,42 +27,25 @@ jobs:
           driver-opts: |
             network=host
 
-      - name: Cache Docker layers
-        uses: actions/cache@v4
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-docker-${{ hashFiles('Docker/bullseye/dockerfile') }}
-          restore-keys: |
-            ${{ runner.os }}-docker-
-
       - name: Build Docker image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v3
         with:
           context: .
           file: Docker/bullseye/dockerfile
           platforms: linux/arm/v7
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
           load: true
           tags: emc-app:${{ github.event.inputs.build_type || 'release' }}
-
-      - name: Update Docker cache
-        run: |
-          rm -rf /tmp/.buildx-cache
-          mv /tmp/.buildx-cache-new /tmp/.buildx-cache || true
 
       - name: Execute package build
         run: |
           docker run --platform linux/arm/v7 \
             -v ${{ github.workspace }}:/machinekit/emca \
             --workdir /machinekit/emca \
-            --name temp-container \
-            --network host \
             emc-app:${{ github.event.inputs.build_type || 'release' }} \
             /bin/bash -c "sudo apt-get update && ./BuildPKG.sh"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: emc-${{ github.event.inputs.build_type || 'release' }}-armv7-debs
+          name: emc-debs
           path: ./emca/*.deb

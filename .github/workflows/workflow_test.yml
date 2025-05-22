@@ -1,20 +1,35 @@
-name: Build ARM .deb Packages test
+name: Build ARM .deb Packages
 
 on:
   workflow_dispatch:
     inputs:
       build_type:
-        description: 'Build type (e.g., debug or release)'
+        description: 'Build type (debug/release)'
         required: false
-        default: 'release'
+        default: 'debug'
       target_arch:
-        description: 'Target architecture (e.g., arm/v7, arm64, amd64)'
+        description: 'Target architecture (arm/v7, arm64, amd64)'
         required: false
         default: 'arm/v7'
 
 jobs:
-  build-arm:
+  build-packages:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - target_arch: arm/v7
+            base_image: arm32v7/debian:bullseye
+            qemu_arch: arm
+            qemu_variant: v7
+          - target_arch: arm64
+            base_image: arm64v8/debian:bullseye
+            qemu_arch: aarch64
+            qemu_variant: ""
+          - target_arch: amd64
+            base_image: debian:bullseye
+            qemu_arch: x86_64
+            qemu_variant: ""
 
     steps:
       - name: Checkout repository
@@ -25,51 +40,29 @@ jobs:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
         with:
-          platforms: ${{ github.event.inputs.target_arch || 'arm' }}
+          platforms: ${{ matrix.qemu_arch }}
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
         with:
-          platforms: ${{ github.event.inputs.target_arch || 'arm/v7' }}
+          platforms: linux/${{ matrix.target_arch }}
 
-      - name: Print selected inputs
-        run: |
-          echo "Build type: ${{ github.event.inputs.build_type || 'release' }}"
-          echo "Target architecture: linux/${{ github.event.inputs.target_arch || 'arm/v7' }}"
-
-      - name: Initialize cache directory
+      - name: Initialize cache
         run: |
           mkdir -p /tmp/.buildx-cache
-          # Create valid cache manifest if missing
           if [ ! -f /tmp/.buildx-cache/index.json ]; then
             echo '{"v":"0","created":"$(date -u +"%Y-%m-%dT%H:%M:%SZ")","tags":["latest"]}' > /tmp/.buildx-cache/index.json
           fi
 
-      - name: Cache Docker layers
-        uses: actions/cache@v4
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-buildx-
-
-      - name: Determine base image
-        id: arch-map
-        run: |
-          case "${{ github.event.inputs.target_arch || 'arm/v7' }}" in
-            "arm/v7")   echo "base_image=arm32v7/debian:bullseye" >> $GITHUB_OUTPUT ;;
-            "arm64")    echo "base_image=arm64v8/debian:bullseye" >> $GITHUB_OUTPUT ;;
-            "amd64")    echo "base_image=debian:bullseye" >> $GITHUB_OUTPUT ;;
-            *)          echo "base_image=debian:bullseye" >> $GITHUB_OUTPUT ;;
-          esac
-
       - name: Build Docker image
         run: |
           docker buildx build \
-            --platform linux/${{ github.event.inputs.target_arch || 'arm/v7' }} \
+            --platform linux/${{ matrix.target_arch }} \
             --file Docker/bullseye/dockerfile \
-            --build-arg BASE_IMAGE=${{ steps.arch-map.outputs.base_image }} \
-            --tag emc-app:${{ github.event.inputs.build_type || 'release' }} \
+            --build-arg BASE_IMAGE=${{ matrix.base_image }} \
+            --build-arg TARGETARCH=${{ matrix.qemu_arch }} \
+            --build-arg TARGETVARIANT=${{ matrix.qemu_variant }} \
+            --tag emc-app:${{ inputs.build_type || 'release' }} \
             --cache-from type=local,src=/tmp/.buildx-cache,tag=latest \
             --cache-to type=local,dest=/tmp/.buildx-cache-new,tag=latest,mode=max \
             --load \
@@ -81,25 +74,22 @@ jobs:
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
-      - name: Create output directory
-        run: mkdir -p output
-
       - name: Execute package build
         run: |
-          docker run --platform linux/${{ github.event.inputs.target_arch || 'arm/v7' }} \
+          docker run --platform linux/${{ matrix.target_arch }} \
             -v ${{ github.workspace }}:/machinekit/emca \
             --workdir /machinekit/emca \
             --name temp-container \
-            emc-app:${{ github.event.inputs.build_type || 'release' }} \
+            emc-app:${{ inputs.build_type || 'release' }} \
             /bin/bash scripts/BuildPKG.sh
 
-      - name: Extract built packages
+      - name: Extract artifacts
         run: |
           docker cp temp-container:/machinekit/emca ./
           docker rm temp-container
 
-      - name: Upload artifacts
+      - name: Upload packages
         uses: actions/upload-artifact@v4
         with:
-          name: emc-${{ github.event.inputs.build_type || 'release' }}-debs
+          name: emc-${{ inputs.build_type || 'release' }}-${{ matrix.target_arch }}-debs
           path: ./emca/*.deb

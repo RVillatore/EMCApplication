@@ -54,6 +54,7 @@ jobs:
           docker buildx build \
             --platform linux/${{ github.event.inputs.target_arch || 'arm/v7' }} \
             --file Docker/bullseye/dockerfile \
+            --build-arg BASE_IMAGE=${{ github.event.inputs.target_arch == 'arm/v7' && 'arm32v7/debian:bullseye' || 'debian:bullseye' }} \
             --tag emc-app:${{ github.event.inputs.build_type || 'release' }} \
             --cache-from type=local,src=/tmp/.buildx-cache \
             --cache-to type=local,dest=/tmp/.buildx-cache-new \
@@ -69,9 +70,6 @@ jobs:
 
       - name: Create container and copy source
         run: |
-          #docker create --name temp-container --platform linux/${{ github.event.inputs.target_arch || 'arm/v7' }} emc-app:${{ github.event.inputs.build_type || 'release' }} /bin/bash
-          #docker start temp-container
-          #docker run --rm --platform linux/arm/v7 emc-app:${{ github.event.inputs.build_type || 'release' }} tail -f /dev/null
           docker run --platform linux/${{ github.event.inputs.target_arch || 'arm/v7' }} \
             -v ${{ github.workspace }}:/machinekit/emca \
             --workdir /machinekit/emca \

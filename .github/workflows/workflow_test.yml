@@ -6,7 +6,7 @@ on:
       build_type:
         description: 'Build type (debug/release)'
         required: false
-        default: 'debug'
+        default: 'release'
 
 jobs:
   build-armv7:
@@ -29,34 +29,41 @@ jobs:
           driver-opts: |
             network=host
 
+      - name: Cache Docker layers
+        uses: actions/cache@v4
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-docker-${{ hashFiles('Docker/bullseye/dockerfile') }}
+          restore-keys: |
+            ${{ runner.os }}-docker-
+
       - name: Build Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Docker/bullseye/dockerfile
+          platforms: linux/arm/v7
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+          load: true
+          tags: emc-app:${{ github.event.inputs.build_type || 'release' }}
+
+      - name: Update Docker cache
         run: |
-          docker buildx build \
-            --platform linux/arm/v7 \
-            --file Docker/bullseye/dockerfile \
-            --build-arg BASE_IMAGE=arm32v7/debian:bullseye \
-            --tag emc-app:${{ github.event.inputs.build_type || 'release' }} \
-            --load \
-            --progress plain \
-            .
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache || true
 
       - name: Execute package build
         run: |
           docker run --platform linux/arm/v7 \
             -v ${{ github.workspace }}:/machinekit/emca \
-            -e HOME=/machinekit \
             --workdir /machinekit/emca \
             --name temp-container \
             --network host \
             emc-app:${{ github.event.inputs.build_type || 'release' }} \
-            /bin/bash /machinekit/emca/BuildPKG.sh
+            /bin/bash -c "sudo apt-get update && ./BuildPKG.sh"
 
-      - name: Extract artifacts
-        run: |
-          docker cp temp-container:/machinekit/emca ./
-          docker rm temp-container
-
-      - name: Upload packages
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: emc-${{ github.event.inputs.build_type || 'release' }}-armv7-debs

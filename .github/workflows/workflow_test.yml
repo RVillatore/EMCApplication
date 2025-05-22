@@ -69,8 +69,31 @@ jobs:
         run: |
           # Create a container from the built image
           docker create --name temp-container emc-app:${{ github.event.inputs.build_type || 'release' }} \
-            /bin/bash -c "cd /github/workspace && ./BuildPKG.sh"
+            /bin/bash 
+          #-c "cd /github/workspace && ./BuildPKG.sh"
 
+          docker start temp-container
+          docker exec -u machinekit temp-container -c "curl -1sLf 'https://dl.cloudsmith.io/public/machinekit/machinekit/cfg/setup/bash.deb.sh' | sudo -E bash"
+          docker exec -u machinekit temp-container -c "curl -1sLf 'https://dl.cloudsmith.io/public/machinekit/machinekit-hal/cfg/setup/bash.deb.sh'' | sudo -E bash"
+
+          # 1. Change directory
+          docker exec -u machinekit test-container bash -c "cd /github/workspace/"
+
+          docker exec -u machinekit test-container bash -c "cd /github/workspace/ && export PKG_CONFIG_PATH=/github/workspace/"
+
+          docker exec -u machinekit test-container bash -c "cd /github/workspace/ && sudo update-alternatives --set fakeroot /usr/bin/fakeroot-tcp"
+          
+          docker exec -u machinekit test-container bash -c "cd /github/workspace/ && ./debian/configure machinekit-hal=0.5.21099-1.git2c2ff0e51~bullseye no-docs"
+          
+          docker exec -u machinekit test-container bash -c "cd /github/workspace/ && mk-build-deps --remove --root-cmd sudo --tool 'apt-cudf-get --solver aspcud -o APT::Get::Assume-Yes=1 -o Debug::pkgProblemResolver=0 -o APT::Install-Recommends=0' debian/control"
+
+          docker exec -u machinekit test-container bash -c "cd /github/workspace/ && sudo apt install ./*.deb -y"
+          
+          # 4. Build the package
+          docker exec -u machinekit test-container bash -c "cd /github/workspace/ && dpkg-buildpackage -us -uc"
+
+          docker exec -u machinekit test-container bash -c "cd /github/workspace/ && cp ../*.deb ."
+          
           # Copy all .deb files from the root folder inside the container
           docker cp temp-container:/github/workspace/*.deb ./output
 

@@ -43,8 +43,9 @@ jobs:
             -v ${{ github.workspace }}:/machinekit/emca \
             --workdir /machinekit/emca \
             --name temp-container \
+            --user root \
             emc-app:${{ github.event.inputs.build_type || 'release' }} \
-            /bin/bash ./BuildPKG.sh
+            /bin/bash -c "chown -R machinekit:machinekit /machinekit/emca && sudo -u machinekit /bin/bash /machinekit/emca/BuildPKG.sh"
 
       - name: Extract artifacts
         run: |

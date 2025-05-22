@@ -22,13 +22,17 @@ RUN apt-get update && \
         apt-transport-https \
         dirmngr \
         ca-certificates \
-        software-properties-common && \
+        software-properties-common \
+        gnupg2 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     mkdir -p /machinekit/emca && \
-    chmod 1777 /tmp
+    chmod 1777 /tmp && \
+    # Add Machinekit repository key
+    curl -fsSL https://deb.machinekit.io/apt.key | gpg --dearmor -o /etc/apt/trusted.gpg.d/machinekit.gpg && \
+    echo "deb [arch=armhf] https://deb.machinekit.io/debian bullseye main" > /etc/apt/sources.list.d/machinekit.list
 
-# Configure machinekit user with sudo rights
+# Configure machinekit user
 RUN groupadd -g 1000 machinekit && \
     useradd -m -u 1000 -g 1000 -d /machinekit machinekit && \
     echo "machinekit ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \

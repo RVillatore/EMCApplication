@@ -1,20 +1,13 @@
 FROM multiarch/qemu-user-static as qemu
 
-ARG ARCH=
+ARG ARCH
 FROM ${ARCH}debian:bullseye
+COPY --from=qemu /usr/bin/qemu-arm-static /usr/bin/
 
 RUN apt update && \
     apt upgrade -y
 
-RUN apt install -y build-essential
-RUN apt install -y fakeroot
-RUN apt install -y devscripts
-RUN apt install -y equivs
-RUN apt install -y sudo
-RUN apt install -y curl
-RUN apt install -y python
-RUN apt install -y lsb-release
-RUN apt install -y apt-cudf
+RUN apt install -y build-essential fakeroot devscripts equivs sudo curl python lsb-release apt-cudf
 
 RUN apt install -y gosu
 
@@ -24,8 +17,6 @@ RUN useradd -m -u 1000 -g 1000 -o -s /bin/bash machinekit
 
 RUN echo "machinekit ALL = (ALL) NOPASSWD: ALL" >> /etc/sudoers
 
-RUN apt install -y debian-keyring
-RUN apt install -y debian-archive-keyring
-RUN apt install -y apt-transport-https
+RUN apt install -y debian-keyring debian-archive-keyring apt-transport-https
 
 USER machinekit

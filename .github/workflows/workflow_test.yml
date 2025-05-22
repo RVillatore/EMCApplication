@@ -1,4 +1,4 @@
-name: Build ARM .deb Packages
+name: Build ARMv7 .deb Packages
 
 on:
   workflow_dispatch:
@@ -6,30 +6,11 @@ on:
       build_type:
         description: 'Build type (debug/release)'
         required: false
-        default: 'debug'
-      target_arch:
-        description: 'Target architecture (arm/v7, arm64, amd64)'
-        required: false
-        default: 'arm/v7'
+        default: 'release'
 
 jobs:
-  build-packages:
+  build-armv7:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        include:
-          - target_arch: arm/v7
-            base_image: arm32v7/debian:bullseye
-            qemu_arch: arm
-            qemu_variant: v7
-          - target_arch: arm64
-            base_image: arm64v8/debian:bullseye
-            qemu_arch: aarch64
-            qemu_variant: ""
-          - target_arch: amd64
-            base_image: debian:bullseye
-            qemu_arch: x86_64
-            qemu_variant: ""
 
     steps:
       - name: Checkout repository
@@ -40,28 +21,25 @@ jobs:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
         with:
-          platforms: ${{ matrix.qemu_arch }}
+          platforms: arm
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-        with:
-          platforms: linux/${{ matrix.target_arch }}
 
       - name: Initialize cache
         run: |
           mkdir -p /tmp/.buildx-cache
+          # Create valid JSON with proper escaping
           if [ ! -f /tmp/.buildx-cache/index.json ]; then
-            echo '{"v":"0","created":"$(date -u +"%Y-%m-%dT%H:%M:%SZ")","tags":["latest"]}' > /tmp/.buildx-cache/index.json
+            echo '{"v":"0","created":"'"$(date -u +'%Y-%m-%dT%H:%M:%SZ')"'","tags":["latest"]}' > /tmp/.buildx-cache/index.json
           fi
 
       - name: Build Docker image
         run: |
           docker buildx build \
-            --platform linux/${{ matrix.target_arch }} \
+            --platform linux/arm/v7 \
             --file Docker/bullseye/dockerfile \
-            --build-arg BASE_IMAGE=${{ matrix.base_image }} \
-            --build-arg TARGETARCH=${{ matrix.qemu_arch }} \
-            --build-arg TARGETVARIANT=${{ matrix.qemu_variant }} \
+            --build-arg BASE_IMAGE=arm32v7/debian:bullseye \
             --tag emc-app:${{ inputs.build_type || 'release' }} \
             --cache-from type=local,src=/tmp/.buildx-cache,tag=latest \
             --cache-to type=local,dest=/tmp/.buildx-cache-new,tag=latest,mode=max \
@@ -76,7 +54,7 @@ jobs:
 
       - name: Execute package build
         run: |
-          docker run --platform linux/${{ matrix.target_arch }} \
+          docker run --platform linux/arm/v7 \
             -v ${{ github.workspace }}:/machinekit/emca \
             --workdir /machinekit/emca \
             --name temp-container \
@@ -91,5 +69,5 @@ jobs:
       - name: Upload packages
         uses: actions/upload-artifact@v4
         with:
-          name: emc-${{ inputs.build_type || 'release' }}-${{ matrix.target_arch }}-debs
+          name: emc-${{ inputs.build_type || 'release' }}-armv7-debs
           path: ./emca/*.deb

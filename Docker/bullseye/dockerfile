@@ -1,10 +1,10 @@
 # Stage 1: Base image with dependencies
 ARG BASE_IMAGE=arm32v7/debian:bullseye
-FROM ${BASE_IMAGE} as base
+FROM --platform=linux/arm/v7 ${BASE_IMAGE} as base
 
-COPY --from=multiarch/qemu-user-static /usr/bin/qemu-arm-static /usr/bin/
+COPY --from=multiarch/qemu-user-static --platform=linux/arm/v7 /usr/bin/qemu-arm-static /usr/bin/
 
-# Install system dependencies including git
+# Install system dependencies
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
@@ -41,12 +41,15 @@ RUN groupadd -g 1000 machinekit && \
 # Stage 3: Repository setup
 FROM userconfig
 
-# Add Cloudsmith repositories with source entries
-RUN sudo sh -c 'echo "deb [arch=armhf] https://dl.cloudsmith.io/public/machinekit/machinekit/deb/debian bullseye main" > /etc/apt/sources.list.d/machinekit.list' && \
-    sudo sh -c 'echo "deb-src https://dl.cloudsmith.io/public/machinekit/machinekit/deb/debian bullseye main" >> /etc/apt/sources.list.d/machinekit.list' && \
-    sudo sh -c 'echo "deb [arch=armhf] https://dl.cloudsmith.io/public/machinekit/machinekit-hal/deb/debian bullseye main" > /etc/apt/sources.list.d/machinekit-hal.list' && \
-    sudo sh -c 'echo "deb-src https://dl.cloudsmith.io/public/machinekit/machinekit-hal/deb/debian bullseye main" >> /etc/apt/sources.list.d/machinekit-hal.list' && \
-    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key 43D640E7
+# Add Cloudsmith repositories with modern key management
+RUN sudo curl -fsSL -o /etc/apt/trusted.gpg.d/machinekit.gpg \
+    https://dl.cloudsmith.io/public/machinekit/machinekit/gpg.70528471A8369D24.key && \
+    sudo curl -fsSL -o /etc/apt/trusted.gpg.d/machinekit-hal.gpg \
+    https://dl.cloudsmith.io/public/machinekit/machinekit-hal/gpg.70528471A8369D24.key && \
+    echo "deb [arch=armhf] https://dl.cloudsmith.io/public/machinekit/machinekit/deb/debian bullseye main" | sudo tee /etc/apt/sources.list.d/machinekit.list && \
+    echo "deb-src https://dl.cloudsmith.io/public/machinekit/machinekit/deb/debian bullseye main" | sudo tee -a /etc/apt/sources.list.d/machinekit.list && \
+    echo "deb [arch=armhf] https://dl.cloudsmith.io/public/machinekit/machinekit-hal/deb/debian bullseye main" | sudo tee /etc/apt/sources.list.d/machinekit-hal.list && \
+    echo "deb-src https://dl.cloudsmith.io/public/machinekit/machinekit-hal/deb/debian bullseye main" | sudo tee -a /etc/apt/sources.list.d/machinekit-hal.list
 
 # Final application setup with proper permissions
 USER machinekit
@@ -55,4 +58,4 @@ WORKDIR /machinekit/emca
 COPY --chown=machinekit:machinekit . /machinekit/emca/
 
 RUN sudo chmod -R 755 /machinekit/emca && \
-    sudo chown -R machinekit:machinekit /machinekit/emca
+    sudo find /machinekit/emca -type d -exec chmod 755 {} \;

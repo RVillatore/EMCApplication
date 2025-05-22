@@ -41,11 +41,15 @@ jobs:
         run: |
           docker run --platform linux/arm/v7 \
             -v ${{ github.workspace }}:/machinekit/emca \
+            -e HOME=/machinekit \
             --workdir /machinekit/emca \
             --name temp-container \
-            --user root \
             emc-app:${{ github.event.inputs.build_type || 'release' }} \
-            /bin/bash -c "chown -R machinekit:machinekit /machinekit/emca && sudo -u machinekit /bin/bash /machinekit/emca/BuildPKG.sh"
+            /bin/bash -c \
+            "sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key 43D640E7 && \
+             sudo add-apt-repository 'deb https://deb.machinekit.io/debian bullseye main' && \
+             sudo apt-get update && \
+             /bin/bash /machinekit/emca/BuildPKG.sh"
 
       - name: Extract artifacts
         run: |

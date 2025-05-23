@@ -22,7 +22,7 @@ echo "Permissions for problem file before chmod are: `ls -lah ./debian/configure
 
 # Fix permissions before configure
 sudo chmod 755 debian
-sudo chmod 644 debian/*
+#sudo chmod 644 debian/*
 
 # Show problem file permissions
 echo "Permissions for problem file after chmod are: `ls -lah ./debian/configure`"

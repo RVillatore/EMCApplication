@@ -50,7 +50,7 @@ jobs:
             emc-app:${{ github.event.inputs.build_type || 'release' }} \
             /bin/bash -c "\
               chown -R machinekit:machinekit /machinekit/emca && \
-              sudo -u machinekit /bin/bash BuildPKG.sh""
+              sudo -u machinekit /bin/bash BuildPKG.sh"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4

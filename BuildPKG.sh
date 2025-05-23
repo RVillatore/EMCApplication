@@ -38,7 +38,14 @@ mk-build-deps --remove --root-cmd sudo \
     -o APT::Install-Recommends=0' \
     debian/control
 
-sudo apt install machinekit-hal=0.5.21099-1.git2c2ff0e51~bullseye
+sudo apt install debian-keyring debian-archive-keyring apt-transport-https -y
+curl -k 'https://dl.cloudsmith.io/public/machinekit/machinekit/cfg/gpg/gpg.A9B6D8B4BD8321F3.key' | sudo apt-key add -
+curl -k https://dl.cloudsmith.io/public/machinekit/machinekit/cfg/setup/config.deb.txt?distro=$(lsb_release -is | tr "[:upper:]" "[:lower:]")\&codename=$(lsb_release -cs) | sudo tee -a /etc/apt/sources.list.d/machinekit-machinekit.list
+curl -k 'https://dl.cloudsmith.io/public/machinekit/machinekit-hal/cfg/gpg/gpg.D35981AB4276AC36.key' | sudo apt-key add -
+curl -k https://dl.cloudsmith.io/public/machinekit/machinekit-hal/cfg/setup/config.deb.txt?distro=$(lsb_release -is | tr "[:upper:]" "[:lower:]")\&codename=$(lsb_release -cs) | sudo tee -a /etc/apt/sources.list.d/machinekit-machinekit-hal.list
+sudo apt update
+
+sudo apt install machinekit-hal=0.5.21099-1.git2c2ff0e51~bullseye -y
     
 sudo apt install ./*.deb -y
 

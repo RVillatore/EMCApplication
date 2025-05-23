@@ -33,7 +33,8 @@ curl -1sLf 'https://dl.cloudsmith.io/public/machinekit/machinekit/setup.deb.sh' 
 sudo apt update
 
 # Configure with proper permissions
-./debian/configure machinekit-hal=0.5.21099-1.git2c2ff0e51~bullseye no-docs
+#./debian/configure machinekit-hal=0.5.21099-1.git2c2ff0e51~bullseye no-docs
+./debian/configure machinekit-hal=0.5.21127-1.gitecf488ab8~bullseye no-docs
 
 # Build package
 mk-build-deps --remove --root-cmd sudo \
@@ -43,7 +44,7 @@ mk-build-deps --remove --root-cmd sudo \
     -o APT::Install-Recommends=0' \
     debian/control
 
-sudo apt install libmachinekit-hal=0.5.21099-1.git2c2ff0e51~bullseye -y
+#sudo apt install libmachinekit-hal=0.5.21099-1.git2c2ff0e51~bullseye -y
     
 sudo apt install ./*.deb -y
 

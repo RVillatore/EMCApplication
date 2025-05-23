@@ -43,7 +43,7 @@ mk-build-deps --remove --root-cmd sudo \
     -o APT::Install-Recommends=0' \
     debian/control
 
-sudo apt install machinekit-hal=0.5.21099-1.git2c2ff0e51~bullseye -y
+sudo apt install libmachinekit-hal=0.5.21099-1.git2c2ff0e51~bullseye -y
     
 sudo apt install ./*.deb -y
 

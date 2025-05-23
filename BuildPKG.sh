@@ -47,6 +47,7 @@ mk-build-deps --remove --root-cmd sudo \
 #sudo apt install libmachinekit-hal=0.5.21099-1.git2c2ff0e51~bullseye -y
     
 sudo apt install ./*.deb -y
+rm ./*.deb
 
 dpkg-buildpackage -us -uc
 cp ../*.deb .

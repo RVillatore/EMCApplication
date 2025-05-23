@@ -29,6 +29,7 @@ sudo chmod 755 debian
 
 # Add MK repo
 curl -1sLf 'https://dl.cloudsmith.io/public/machinekit/machinekit-hal/setup.deb.sh' | sudo -E bash
+curl -1sLf 'https://dl.cloudsmith.io/public/machinekit/machinekit/setup.deb.sh' | sudo -E bash
 sudo apt update
 
 # Configure with proper permissions

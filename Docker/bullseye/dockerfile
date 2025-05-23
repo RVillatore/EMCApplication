@@ -49,13 +49,13 @@ RUN groupadd -g 1000 machinekit && \
 FROM userconfig
 
 # Configure repositories with source entries
-RUN sudo curl -fsSL https://dl.cloudsmith.io/public/machinekit/machinekit/gpg.key | \
-    sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/machinekit.gpg && \
-    echo "deb [arch=armhf] https://dl.cloudsmith.io/public/machinekit/machinekit/deb/debian bullseye main" | \
-    sudo tee /etc/apt/sources.list.d/machinekit.list && \
-    echo "deb-src https://dl.cloudsmith.io/public/machinekit/machinekit/deb/debian bullseye main" | \
-    sudo tee -a /etc/apt/sources.list.d/machinekit.list && \
-    sudo apt-get update
+#RUN sudo curl -fsSL https://dl.cloudsmith.io/public/machinekit/machinekit/gpg.key | \
+#    sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/machinekit.gpg && \
+#    echo "deb [arch=armhf] https://dl.cloudsmith.io/public/machinekit/machinekit/deb/debian bullseye main" | \
+#    sudo tee /etc/apt/sources.list.d/machinekit.list && \
+#    echo "deb-src https://dl.cloudsmith.io/public/machinekit/machinekit/deb/debian bullseye main" | \
+#    sudo tee -a /etc/apt/sources.list.d/machinekit.list && \
+#    sudo apt-get update
 
 # Configure environment
 USER machinekit

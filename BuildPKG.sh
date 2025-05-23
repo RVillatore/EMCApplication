@@ -11,6 +11,10 @@ sudo apt-get update
 export PKG_CONFIG_PATH="$PWD"
 sudo update-alternatives --set fakeroot /usr/bin/fakeroot-tcp
 
+# Fix permissions before configure
+sudo chmod 755 debian
+sudo chmod 644 debian/*
+
 # Configure with proper permissions
 ./debian/configure machinekit-hal=0.5.21099-1.git2c2ff0e51~bullseye no-docs
 

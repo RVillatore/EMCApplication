@@ -38,9 +38,9 @@ mk-build-deps --remove --root-cmd sudo \
     -o APT::Install-Recommends=0' \
     debian/control
 
-apt-get install -y debian-keyring  # debian only
-apt-get install -y debian-archive-keyring  # debian only
-apt-get install -y apt-transport-https
+sudo apt install -y debian-keyring  # debian only
+sudo apt install -y debian-archive-keyring  # debian only
+sudo apt install -y apt-transport-https
 # For Debian Stretch, Ubuntu 16.04 and later
 keyring_location=/usr/share/keyrings/machinekit-machinekit-hal-archive-keyring.gpg
 # For Debian Jessie, Ubuntu 15.10 and earlier

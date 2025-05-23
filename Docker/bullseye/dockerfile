@@ -69,5 +69,7 @@ RUN git config --global --add safe.directory /machinekit/emca && \
 COPY --chown=machinekit:machinekit . .
 
 # Final permissions fix
-RUN sudo chmod -R 755 debian && \
-    sudo chown -R machinekit:machinekit .
+RUN sudo chmod -R 755 /machinekit/emca/debian && \
+    sudo chmod -R 755 ./debian && \
+    sudo chown -R machinekit:machinekit . && \
+    sudo chown -R machinekit:machinekit /machinekit

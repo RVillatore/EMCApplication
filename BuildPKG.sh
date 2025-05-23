@@ -6,7 +6,6 @@ cd /machinekit/emca
 
 # Install build dependencies
 sudo apt-get update
-sudo apt-get build-dep -y
 
 # Build steps
 export PKG_CONFIG_PATH="$PWD"
@@ -22,6 +21,8 @@ mk-build-deps --remove --root-cmd sudo \
     -o Debug::pkgProblemResolver=0 \
     -o APT::Install-Recommends=0' \
     debian/control
+    
+sudo apt install ./*.deb -y
 
 dpkg-buildpackage -us -uc
 cp ../*.deb .

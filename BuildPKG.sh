@@ -15,7 +15,7 @@ sudo update-alternatives --set fakeroot /usr/bin/fakeroot-tcp
 echo "Script executed from: ${PWD}"
 
 # Show files
-echo "File list current folder: ${ls -lah .}"
+echo "File list current folder: `ls -lah .`}"
 
 # Fix permissions before configure
 sudo chmod 755 debian

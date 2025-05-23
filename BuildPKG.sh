@@ -38,12 +38,18 @@ mk-build-deps --remove --root-cmd sudo \
     -o APT::Install-Recommends=0' \
     debian/control
 
-sudo apt install debian-keyring debian-archive-keyring apt-transport-https
-curl -k 'https://dl.cloudsmith.io/public/machinekit/machinekit/cfg/gpg/gpg.A9B6D8B4BD8321F3.key' | sudo apt-key add -
-curl -k https://dl.cloudsmith.io/public/machinekit/machinekit/cfg/setup/config.deb.txt?distro=$(lsb_release -is | tr "[:upper:]" "[:lower:]")\&codename=$(lsb_release -cs) | sudo tee -a /etc/apt/sources.list.d/machinekit-machinekit.list
-curl -k 'https://dl.cloudsmith.io/public/machinekit/machinekit-hal/cfg/gpg/gpg.D35981AB4276AC36.key' | sudo apt-key add -
-curl -k https://dl.cloudsmith.io/public/machinekit/machinekit-hal/cfg/setup/config.deb.txt?distro=$(lsb_release -is | tr "[:upper:]" "[:lower:]")\&codename=$(lsb_release -cs) | sudo tee -a /etc/apt/sources.list.d/machinekit-machinekit-hal.list
-sudo apt update
+apt-get install -y debian-keyring  # debian only
+apt-get install -y debian-archive-keyring  # debian only
+apt-get install -y apt-transport-https
+# For Debian Stretch, Ubuntu 16.04 and later
+keyring_location=/usr/share/keyrings/machinekit-machinekit-hal-archive-keyring.gpg
+# For Debian Jessie, Ubuntu 15.10 and earlier
+keyring_location=/etc/apt/trusted.gpg.d/machinekit-machinekit-hal.gpg
+curl -1sLf 'https://dl.cloudsmith.io/public/machinekit/machinekit-hal/gpg.D35981AB4276AC36.key' |  gpg --dearmor >> ${keyring_location}
+curl -1sLf 'https://dl.cloudsmith.io/public/machinekit/machinekit-hal/config.deb.txt?distro=ubuntu&codename=xenial&component=main' > /etc/apt/sources.list.d/machinekit-machinekit-hal.list
+sudo chmod 644 ${keyring_location}
+sudo chmod 644 /etc/apt/sources.list.d/machinekit-machinekit-hal.list
+apt-get update
 
 sudo apt install machinekit-hal=0.5.21099-1.git2c2ff0e51~bullseye -y
     

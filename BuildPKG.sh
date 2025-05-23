@@ -11,6 +11,12 @@ sudo apt-get update
 export PKG_CONFIG_PATH="$PWD"
 sudo update-alternatives --set fakeroot /usr/bin/fakeroot-tcp
 
+# show where we are
+echo "Script executed from: ${PWD}"
+
+# Show files
+echo "Script executed from: ${ls}"
+
 # Fix permissions before configure
 sudo chmod 755 debian
 sudo chmod 644 debian/*

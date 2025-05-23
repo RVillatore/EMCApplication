@@ -44,8 +44,13 @@ jobs:
           docker run --platform linux/arm/v7 \
             -v ${{ github.workspace }}:/machinekit/emca \
             --workdir /machinekit/emca \
+            --name temp-container \
+            --user root \
+            -e TMPDIR=/tmp/.build \
             emc-app:${{ github.event.inputs.build_type || 'release' }} \
-            /bin/bash -c "sudo apt-get update && ./BuildPKG.sh"
+            /bin/bash -c "\
+              chown -R machinekit:machinekit /machinekit/emca && \
+              sudo -u machinekit /bin/bash BuildPKG.sh""
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4

@@ -48,14 +48,26 @@ RUN groupadd -g 1000 machinekit && \
 # Stage 3: Final image
 FROM userconfig
 
-# Configure repositories with verified configuration
+# Configure repositories with source entries
 RUN sudo curl -fsSL https://dl.cloudsmith.io/public/machinekit/machinekit/gpg.key | \
     sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/machinekit.gpg && \
     echo "deb [arch=armhf] https://dl.cloudsmith.io/public/machinekit/machinekit/deb/debian bullseye main" | \
     sudo tee /etc/apt/sources.list.d/machinekit.list && \
+    echo "deb-src https://dl.cloudsmith.io/public/machinekit/machinekit/deb/debian bullseye main" | \
+    sudo tee -a /etc/apt/sources.list.d/machinekit.list && \
     sudo apt-get update
 
+# Configure environment
 USER machinekit
 WORKDIR /machinekit/emca
 
+# Set up safe directory for git and permissions
+RUN git config --global --add safe.directory /machinekit/emca && \
+    sudo mkdir -p /tmp/.build && \
+    sudo chown -R machinekit:machinekit /tmp/.build
+
 COPY --chown=machinekit:machinekit . .
+
+# Final permissions fix
+RUN sudo chmod -R 755 debian && \
+    sudo chown -R machinekit:machinekit .

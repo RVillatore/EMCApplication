@@ -3,6 +3,7 @@ dpkg --print-architecture && uname -m
 apt update
 apt upgrade -y
 apt install build-essential fakeroot devscripts equivs sudo curl python lsb-release apt-cudf -y
+sudo apt-get install -y aspcud apt-cudf -y
 addgroup machinekit --gid 1000
 adduser machinekit --uid 1000 --gid 1000
 echo "machinekit ALL = (ALL) NOPASSWD: ALL" >> /etc/sudoers

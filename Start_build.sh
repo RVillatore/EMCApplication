@@ -18,7 +18,9 @@ curl -1sLf \
 sudo apt update
 cd /machinekit/emca
 export PKG_CONFIG_PATH=/machinekit/emca
-./debian/configure machinekit-hal=0.5.21099-1.git2c2ff0e51~bionic no-docs
+HAL_VER=$(apt-cache policy machinekit-hal | awk '/Candidate:/ {print $2}')
+./debian/configure machinekit-hal=$HAL_VER no-docs
+#./debian/configure machinekit-hal=0.5.21099-1.git2c2ff0e51~bionic no-docs
 mk-build-deps -irs sudo -t 'apt-cudf-get --solver aspcud -o Debug::pkgProblemResolver=0 -o APT::Install-Recommends=0'
 
 sudo update-alternatives --set fakeroot /usr/bin/fakeroot-tcp

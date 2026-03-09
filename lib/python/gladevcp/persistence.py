@@ -1,25 +1,25 @@
 #!/usr/bin/env python
 # vim: sts=4 sw=4 et
-#    This is a component of EMC
-#    util.py Copyright 2010 Michael Haberler
+# This is a component of EMC
+# util.py Copyright 2010 Michael Haberler
 #
 #
-#    This program is free software; you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation; either version 2 of the License, or
-#    (at your option) any later version.
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
 #
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
 #
-#    You should have received a copy of the GNU General Public License
-#    along with this program; if not, write to the Free Software
-#    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.'''
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.'''
 '''
-    persistence support for gladevcp widgets
-    Michael Haberler 11/2010
+ persistence support for gladevcp widgets
+ Michael Haberler 11/2010
 '''
 import os
 import sys
@@ -43,47 +43,42 @@ co_map = {'str': 'string','int':'integer', 'str': 'string', 'bool': 'boolean'}
 debug = 0
 version_number = 1
 
-
 def warn(*args):
-    print >> sys.stderr,''.join(args)
-
+    print(''.join(args), file=sys.stderr)
 
 def dbg(level,*args):
     global debug
     if debug < level: return
-    print ''.join(args)
-
+    print(''.join(args))
 
 def set_debug(value):
     global debug
     debug = value
 
-
 def select_widgets(widgets, hal_only=False,output_only = False):
     '''
     input: a list of widget instances
     output: a list of widget instances, pruned according to the flags:
-        hal_only = True:  only add HAL widgets which make sense restoring
-        output_only = True: only add widgets which let users
-        set a value (scale,button..)
+    hal_only = True: only add HAL widgets which make sense restoring
+    output_only = True: only add widgets which let users
+    set a value (scale,button..)
     '''
     wlist = []
     for w in widgets:
-        # always skip the following types: 
+        # always skip the following types:
         if isinstance(w, (_EMC_ActionBase)):
             continue
         if hal_only and not isinstance(w, _HalWidgetBase):
             continue
         if output_only and not isinstance(w, (gtk.Range,
-                                              gtk.SpinButton,
-                                              gtk.ComboBox,
-                                              gtk.CheckButton,
-                                              gtk.ToggleButton,
-                                              gtk.RadioButton)):
+                                         gtk.SpinButton,
+                                         gtk.ComboBox,
+                                         gtk.CheckButton,
+                                         gtk.ToggleButton,
+                                         gtk.RadioButton)):
             continue
         wlist.append(w)
     return wlist
-
 
 def accessors(w):
     '''
@@ -113,11 +108,10 @@ def widget_defaults(widgets):
         try:
             v = get_value(w)
             wvalues[k] = v
-        except Exception,msg:
-            warn("widget_defaults:" + msg)
+        except Exception as msg:
+            warn("widget_defaults:" + str(msg))
             continue
     return wvalues
-
 
 class IniFile(object):
 
@@ -141,9 +135,9 @@ class IniFile(object):
             spec += '[' + section + ']\n'
             for varname in sorted(vdict[section].keys()):
                 typename = type(vdict[section][varname]).__name__
-                if co_map.has_key(typename):
+                if typename in co_map:
                     typename = co_map[typename]
-                spec += '\t' + varname + ' = ' + typename  + '\n'
+                spec += '\t' + varname + ' = ' + typename + '\n'
         return spec
 
     def restore_state(self,obj):
@@ -156,9 +150,9 @@ class IniFile(object):
         if not self.defaults.has_key(IniFile.ini):
             raise BadDescriptorDictError("defaults dict lacks 'ini' section")
 
-        if  self.defaults[IniFile.ini][IniFile.signature] != (
-                self.config[IniFile.ini][IniFile.signature]):
-            warn("signature mismatch in %s -  resetting to default" %
+        if self.defaults[IniFile.ini][IniFile.signature] != (
+            self.config[IniFile.ini][IniFile.signature]):
+            warn("signature mismatch in %s - resetting to default" %
                  (self.filename))
             dbg(1, "expected: %s, got %s" %
                 (self.defaults[IniFile.ini][IniFile.signature],
@@ -188,11 +182,10 @@ class IniFile(object):
             for k in self.defaults[IniFile.widgets].keys():
                 self.config[IniFile.widgets][k] = get_value(self.builder.get_object(k))
 
-        self.config.final_comment = ['last update  by %s.save_state() on %s ' %
-                                         (__name__,time.asctime())]
+        self.config.final_comment = ['last update by %s.save_state() on %s ' %
+                                     (__name__,time.asctime())]
         self.write()
         dbg(1, "save_state() to %s" % (self.filename))
-
 
     def create_default_ini(self):
         '''
@@ -242,7 +235,7 @@ class IniFile(object):
                     else:
                         raise Exception(error)
 
-            except (IOError, TypeError,UselessIniError),msg:
+            except (IOError, TypeError,UselessIniError) as msg:
                 warn("%s - creating default" % (msg))
                 self.create_default_ini()
                 continue
@@ -262,8 +255,8 @@ class IniFile(object):
         self.config.write()
 
     def __init__(self,filename,defaults,builder):
-        defaults[IniFile.ini] =   { IniFile.signature : 'astring',
-                                    IniFile.version : version_number }
+        defaults[IniFile.ini] = { IniFile.signature : 'astring',
+                                  IniFile.version : version_number }
         self.defaults = defaults
         self.filename = filename
         self.builder = builder

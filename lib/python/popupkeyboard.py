@@ -68,7 +68,7 @@ except:
 
 try:
     import gtk
-except ImportError,msg:
+except ImportError as msg:
     print('GTK not available: %s' % msg)
     sys.exit(1)
 
@@ -94,7 +94,7 @@ class PopupKeyboard:
         except ImportError as detail:
             print('ImportError:',detail)
         except Exception as msg:
-            print('Exception:',Exception)
+            print('Exception:', msg)
             print(sys.exc_info())
             sys.exit(1)
 

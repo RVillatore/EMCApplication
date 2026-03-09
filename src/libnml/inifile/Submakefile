@@ -8,9 +8,8 @@ $(patsubst ./libnml/inifile/%,../include/%,$(wildcard ./libnml/inifile/*.hh)): .
 LIBINISRCS := libnml/inifile/inifile.cc
 $(call TOOBJSDEPS, $(LIBINISRCS)) : EXTRAFLAGS=-fPIC
 
-INIFILESRCS := libnml/inifile/inivar.cc
-
-USERSRCS += $(INIFILESRCS) $(LIBINISRCS)
+# Always build the library sources
+USERSRCS += $(LIBINISRCS)
 TARGETS += ../lib/liblinuxcncini.so ../lib/liblinuxcncini.so.0
 
 ../lib/liblinuxcncini.so.0: $(call TOOBJS,$(LIBINISRCS))
@@ -19,7 +18,13 @@ TARGETS += ../lib/liblinuxcncini.so ../lib/liblinuxcncini.so.0
 	@rm -f $@
 	$(Q)$(CXX) $(LDFLAGS) -Wl,-soname,$(notdir $@) -shared -o $@ $^
 
+# Only build inivar binary if we have internal HAL (external HAL provides it)
+ifdef HAVE_INTERNAL_HAL
+INIFILESRCS := libnml/inifile/inivar.cc
+USERSRCS += $(INIFILESRCS)
+
 ../bin/inivar: $(call TOOBJS, $(INIFILESRCS)) ../lib/liblinuxcncini.so.0
 	$(ECHO) Linking $(notdir $@)
-	$(Q)$(CXX) $(LDFLAGS) -o $@ $^ 
+	$(Q)$(CXX) $(LDFLAGS) -o $@ $^
 TARGETS += ../bin/inivar
+endif
